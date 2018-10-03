@@ -29,7 +29,7 @@ pipeline {
         always {
             
             // Archive soaptest results
-            junit healthScaleFactor: 100.0, testResults: 'soaptest/TEST*.xml'
+            junit healthScaleFactor: 100.0, testResults: 'loadtest/TEST*.xml'
             
         }
     }
