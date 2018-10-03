@@ -24,13 +24,4 @@ pipeline {
             }
         }
     }
-
-    post {
-        always {
-            
-            // Archive soaptest results
-            junit healthScaleFactor: 100.0, testResults: 'loadtest/TEST*.xml'
-            
-        }
-    }
 }
