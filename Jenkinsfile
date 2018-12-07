@@ -17,7 +17,7 @@ pipeline {
                         cat ${TRUSTKEY} > ./conf/truststore.p12
                         ls -l ./conf/truststore.p12
                         sed -i -e 's@TRUSTSTOREVARIABLE@'"truststore.p12"'@; s@TRUSTSTOREPASSWORD@'"${TRUSTKEYPWD}"'@' ./conf/gatling.conf
-                        docker-compose run --rm testsuite 
+                        docker-compose run --rm testsuite
                     """
                 }
                 gatlingArchive()
