@@ -9,6 +9,6 @@ set -x
 chown -R $DIR_OWNER $DIR
 
 #------------------------------------
-# Run Load test
+# Run Load test (mute cli questions)
 #------------------------------------
-gatling.sh
+gatling.sh -m
