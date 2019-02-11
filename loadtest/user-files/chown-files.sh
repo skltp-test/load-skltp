@@ -9,6 +9,7 @@ DIR_OWNER=$(stat -c "%u:%g" $DIR)
 echo "Ownership: ${DIR_OWNER}"
 set -x
 chown -R $DIR_OWNER $DIR
+chown -R $DIR_OWNER $DIR/../results
 
 #------------------------------------
 # Run Load test (mute cli questions)
