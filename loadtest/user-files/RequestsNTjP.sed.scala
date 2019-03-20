@@ -10,64 +10,64 @@ class RequestsNTjP extends Simulation {
 	val feeder1 = csv("../user-files/data/NTJPduration.csv").circular
 	
 	val httpConf = http
-		//.baseURL("https://test.esb.ntjp.se/vp/") // Here is the root for all relative URLs
+		//.baseURL("https://TARGETHOST/vp/") // Here is the root for all relative URLs
 		.acceptEncodingHeader("gzip, deflate")
 		.userAgentHeader("NTjP load tests")
 
 	   val GetDiagnosis_2 = exec(http("GetDiagnosis_2")
-		.post("https://test.esb.ntjp.se/vp/clinicalprocess/healthcond/description/GetDiagnosis/2/rivtabp21")
-		.body(ElFileBody("user-files/data/GetDiagnosis2.xml")).asXML
-		.check(status.is(200), responseTimeInMillis.lessThan(15000)))
+		.post("https://TARGETHOST/vp/clinicalprocess/healthcond/description/GetDiagnosis/2/rivtabp21")
+		.body(ElFileBody("user-files/data/GetDiagnosis2.xml")).asXml
+		.check(status.is(200), responseTimeInMillis.lt(15000)))
 
 	   val GetMedicationHistory_2 = exec(http("GetMedicationHistory_2")
-		.post("https://test.esb.ntjp.se/vp/clinicalprocess/activityprescription/actoutcome/GetMedicationHistory/2/rivtabp21")
-		.body(ElFileBody("user-files/data/GetMedicationHistory2.xml")).asXML
-		.check(status.is(200), responseTimeInMillis.lessThan(15000)))  
+		.post("https://TARGETHOST/vp/clinicalprocess/activityprescription/actoutcome/GetMedicationHistory/2/rivtabp21")
+		.body(ElFileBody("user-files/data/GetMedicationHistory2.xml")).asXml
+		.check(status.is(200), responseTimeInMillis.lt(15000)))  
 
 	   val GetImagingOutcome_1 = exec(http("GetImagingOutcome_1")
-                .post("https://test.esb.ntjp.se/vp/clinicalprocess/healthcond/actoutcome/GetImagingOutcome/1/rivtabp21")
-                .body(ElFileBody("user-files/data/GetImagingOutcome1.xml")).asXML
-			.check(status.is(200), responseTimeInMillis.lessThan(15000)))
+                .post("https://TARGETHOST/vp/clinicalprocess/healthcond/actoutcome/GetImagingOutcome/1/rivtabp21")
+                .body(ElFileBody("user-files/data/GetImagingOutcome1.xml")).asXml
+			.check(status.is(200), responseTimeInMillis.lt(15000)))
 
 	   val GetLaboratoryOrderOutcome_3 = exec(http("GetLaboratoryOrderOutcome_3")
-                .post("https://test.esb.ntjp.se/vp/clinicalprocess/healthcond/actoutcome/GetLaboratoryOrderOutcome/3/rivtabp21")
-                .body(ElFileBody("user-files/data/GetLaboratoryOrderOutcome3.xml")).asXML
-			.check(status.is(200), responseTimeInMillis.lessThan(15000)))
+                .post("https://TARGETHOST/vp/clinicalprocess/healthcond/actoutcome/GetLaboratoryOrderOutcome/3/rivtabp21")
+                .body(ElFileBody("user-files/data/GetLaboratoryOrderOutcome3.xml")).asXml
+			.check(status.is(200), responseTimeInMillis.lt(15000)))
 
 	   val GetReferralOutcome_3 = exec(http("GetReferralOutcome_3")
-                .post("https://test.esb.ntjp.se/vp/clinicalprocess/healthcond/actoutcome/GetReferralOutcome/3/rivtabp21")
-                .body(ElFileBody("user-files/data/GetReferralOutcome3.xml")).asXML
-			.check(status.is(200), responseTimeInMillis.lessThan(15000)))
+                .post("https://TARGETHOST/vp/clinicalprocess/healthcond/actoutcome/GetReferralOutcome/3/rivtabp21")
+                .body(ElFileBody("user-files/data/GetReferralOutcome3.xml")).asXml
+			.check(status.is(200), responseTimeInMillis.lt(15000)))
 
 	   val GetAlertInformation_2 = exec(http("GetAlertInformation_2")
-                .post("https://test.esb.ntjp.se/vp/clinicalprocess/healthcond/description/GetAlertInformation/2/rivtabp21")
-                .body(ElFileBody("user-files/data/GetAlertInformation2.xml")).asXML
-			.check(status.is(200), responseTimeInMillis.lessThan(15000)))
+                .post("https://TARGETHOST/vp/clinicalprocess/healthcond/description/GetAlertInformation/2/rivtabp21")
+                .body(ElFileBody("user-files/data/GetAlertInformation2.xml")).asXml
+			.check(status.is(200), responseTimeInMillis.lt(15000)))
 
 	   val GetCareContacts_2 = exec(http("GetCareContacts_2")
-                .post("https://test.esb.ntjp.se/vp/clinicalprocess/logistics/logistics/GetCareContacts/2/rivtabp21")
-                .body(ElFileBody("user-files/data/GetCareContacts2.xml")).asXML
-			.check(status.is(200), responseTimeInMillis.lessThan(15000)))
+                .post("https://TARGETHOST/vp/clinicalprocess/logistics/logistics/GetCareContacts/2/rivtabp21")
+                .body(ElFileBody("user-files/data/GetCareContacts2.xml")).asXml
+			.check(status.is(200), responseTimeInMillis.lt(15000)))
 
 	   val GetCareDocumentation_2 = exec(http("GetCareDocumentation_2")
-                .post("https://test.esb.ntjp.se/vp/clinicalprocess/healthcond/description/GetCareDocumentation/2/rivtabp21")
-                .body(ElFileBody("user-files/data/GetCareDocumentation2.xml")).asXML
-			.check(status.is(200), responseTimeInMillis.lessThan(15000)))
+                .post("https://TARGETHOST/vp/clinicalprocess/healthcond/description/GetCareDocumentation/2/rivtabp21")
+                .body(ElFileBody("user-files/data/GetCareDocumentation2.xml")).asXml
+			.check(status.is(200), responseTimeInMillis.lt(15000)))
 
 	   val GetVaccinationHistory_2 = exec(http("GetVaccinationHistory_2")
-                .post("https://test.esb.ntjp.se/vp/clinicalprocess/activityprescription/actoutcome/GetVaccinationHistory/2/rivtabp21")
-                .body(ElFileBody("user-files/data/GetVaccinationHistory2.xml")).asXML
-			.check(status.is(200), responseTimeInMillis.lessThan(15000)))
+                .post("https://TARGETHOST/vp/clinicalprocess/activityprescription/actoutcome/GetVaccinationHistory/2/rivtabp21")
+                .body(ElFileBody("user-files/data/GetVaccinationHistory2.xml")).asXml
+			.check(status.is(200), responseTimeInMillis.lt(15000)))
 
 	   val GetFunctionalStatus_2 = exec(http("GetFunctionalStatus_2")
-                .post("https://test.esb.ntjp.se/vp/clinicalprocess/healthcond/description/GetFunctionalStatus/2/rivtabp21")
-                .body(ElFileBody("user-files/data/GetFunctionalStatus2.xml")).asXML
-			.check(status.is(200), responseTimeInMillis.lessThan(15000)))
+                .post("https://TARGETHOST/vp/clinicalprocess/healthcond/description/GetFunctionalStatus/2/rivtabp21")
+                .body(ElFileBody("user-files/data/GetFunctionalStatus2.xml")).asXml
+			.check(status.is(200), responseTimeInMillis.lt(15000)))
 
 	   val GetCarePlans_2 = exec(http("GetCarePlans_2")
-                .post("https://test.esb.ntjp.se/vp/clinicalprocess/logistics/logistics/GetCarePlans/2/rivtabp21")
-                .body(ElFileBody("user-files/data/GetCarePlans2.xml")).asXML
-			.check(status.is(200), responseTimeInMillis.lessThan(15000)))
+                .post("https://TARGETHOST/vp/clinicalprocess/logistics/logistics/GetCarePlans/2/rivtabp21")
+                .body(ElFileBody("user-files/data/GetCarePlans2.xml")).asXml
+			.check(status.is(200), responseTimeInMillis.lt(15000)))
 
 		
 	// Available scenarios for different types of setups

@@ -9,6 +9,7 @@ pipeline {
                                  certificate(credentialsId: 'TSTNMT_TRUSTSTORE', keystoreVariable: 'TRUSTKEY', passwordVariable: 'TRUSTKEYPWD')]) {
                     sh """
                         #! /bin/bash
+			echo "Tests will be run against the following host: ${TARGETHOST}"
                         keytool -list -keystore ${TRUSTKEY} -storepass ${TRUSTKEYPWD} -storetype pkcs12
                         cd loadtest
                         cat ${CERTKEY} > ./conf/cert.p12
@@ -17,6 +18,7 @@ pipeline {
                         cat ${TRUSTKEY} > ./conf/truststore.p12
                         ls -l ./conf/truststore.p12
                         sed -i -e 's@TRUSTSTOREVARIABLE@'"truststore.p12"'@; s@TRUSTSTOREPASSWORD@'"${TRUSTKEYPWD}"'@' ./conf/gatling.conf
+			sed -e 's@TARGETHOST@'"${TARGETHOST}"'@'  ./user-files/RequestsNTjP.sed.scala > /user-files/simulations/RequestsNTjP.scala
                         docker-compose run --rm testsuite
                     """
                 }
