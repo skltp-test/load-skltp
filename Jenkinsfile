@@ -17,8 +17,8 @@ pipeline {
                         sed -i -e 's@KEYSTOREVARIABLE@'"cert.p12"'@; s@KEYSTOREPASSWORD@'"${CERTKEYPWD}"'@' ./conf/gatling.conf
                         cat ${TRUSTKEY} > ./conf/truststore.p12
                         ls -l ./conf/truststore.p12
-                        sed -i -e 's@TRUSTSTOREVARIABLE@'"truststore.p12"'@; s@TRUSTSTOREPASSWORD@'"${TRUSTKEYPWD}"'@' ./conf/gatling.conf
-			sed -i -e 's@TARGETHOST@'"${TARGETHOST}"'@' ./user-files/simulations/RequestsNTjP.scala
+                        sed -e 's@TRUSTSTOREVARIABLE@'"truststore.p12"'@; s@TRUSTSTOREPASSWORD@'"${TRUSTKEYPWD}"'@' ./conf/gatling.sedit > ./conf/gatling.conf
+			sed -e 's@TARGETHOST@'"${TARGETHOST}"'@' ./user-files/simulations/RequestsNTjP.sedit > ./user-files/simulations/RequestsNTjP.scala
                         docker-compose run --rm testsuite
                     """
                 }
