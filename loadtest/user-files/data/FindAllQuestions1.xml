@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-16"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:add="http://www.w3.org/2005/08/addressing" xmlns:urn="urn:riv:insuranceprocess:healthreporting:FindAllQuestionsResponder:1">
+   <soapenv:Header>
+      <add:To>${logicalAddress}</add:To>
+   </soapenv:Header>
+   <soapenv:Body>
+      <urn:FindAllQuestions>
+		<careUnitId root="1.2.752.129.2.1.4.1" extension="CAREUNITVP007_HSA"/>
+		<careGiverId root="1.2.752.129.2.1.4.1" extension="CAREGIVERVP007_HSA"/>
+      </urn:FindAllQuestions>
+   </soapenv:Body>
+</soapenv:Envelope>
