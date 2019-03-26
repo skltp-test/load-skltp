@@ -116,7 +116,9 @@ class RequestsNTjP extends Simulation {
         // Updates (add followed by delete)
         val requestUpdate20 = scenario("Update20").feed(feederUpdate).exec(Update20)
         // Fault scenarios
-        val requestFaults = scenario("Faults").feed(feederVP004).exec(VP004).exec(VP007).exec(VP009)
+        val requestVP004 = scenario("VP004").feed(feederVP004).exec(VP004)
+        val requestVP007 = scenario("VP007").feed(feederVP007).exec(VP007)
+        val requestVP009 = scenario("VP009").feed(feederVP009).exec(VP009)
 
 
   // Simulate NPÖ that requests patient data once per second
@@ -135,17 +137,12 @@ class RequestsNTjP extends Simulation {
 	constantUsersPerSec(15) during(5 seconds), 
 	constantUsersPerSec(3) during(55 seconds), 
 	constantUsersPerSec(15) during(5 seconds)), 
-    requestFaults.inject(
-	nothingFor(60 seconds), 
-        atOnceUsers(1),
-	nothingFor(60 seconds), 
-        atOnceUsers(1),
-	nothingFor(60 seconds), 
-        atOnceUsers(1),
-	nothingFor(60 seconds), 
-        atOnceUsers(1),
-	nothingFor(60 seconds), 
-        atOnceUsers(1)),
+    requestVP004.inject(
+        heavisideUsers(5) during (300 seconds)),
+    requestVP007.inject(
+        heavisideUsers(5) during (300 seconds)),
+    requestVP009.inject(
+        heavisideUsers(5) during (300 seconds)),
     requestGetDiagnosis_2.inject(rampUsersPerSec(1) to (3) during(60 seconds), constantUsersPerSec(3) during(240 seconds)),
     requestGetMedicationHistory_2.inject(rampUsersPerSec(1) to (3) during(60 seconds), constantUsersPerSec(3) during(240 seconds)),
     requestGetImagingOutcome_1.inject(rampUsersPerSec(1) to (3) during(60 seconds), constantUsersPerSec(3) during(240 seconds)),
