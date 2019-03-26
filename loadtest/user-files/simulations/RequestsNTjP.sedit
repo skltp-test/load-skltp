@@ -146,17 +146,17 @@ class RequestsNTjP extends Simulation {
         atOnceUsers(1),
 	nothingFor(60 seconds), 
         atOnceUsers(1)),
-    requestGetDiagnosis_2.inject(rampUsersPerSec(1) to (4) during(60 seconds), constantUsersPerSec(4) during(240 seconds)),
-    requestGetMedicationHistory_2.inject(rampUsersPerSec(1) to (4) during(60 seconds), constantUsersPerSec(4) during(240 seconds)),
-    requestGetImagingOutcome_1.inject(rampUsersPerSec(1) to (4) during(60 seconds), constantUsersPerSec(4) during(240 seconds)),
-    requestGetLaboratoryOrderOutcome_3.inject(rampUsersPerSec(1) to (4) during(60 seconds), constantUsersPerSec(4) during(240 seconds)),
-    requestGetReferralOutcome_3.inject(rampUsersPerSec(1) to (4) during(60 seconds), constantUsersPerSec(4) during(240 seconds)),
-    requestGetAlertInformation_2.inject(rampUsersPerSec(1) to (4) during(60 seconds), constantUsersPerSec(4) during(240 seconds)),
-    requestGetCareContacts_2.inject(rampUsersPerSec(1) to (4) during(60 seconds), constantUsersPerSec(4) during(240 seconds)),
-    requestGetCareDocumentation_2.inject(rampUsersPerSec(1) to (4) during(60 seconds), constantUsersPerSec(4) during(240 seconds)),
-    requestGetVaccinationHistory_2.inject(rampUsersPerSec(1) to (4) during(60 seconds), constantUsersPerSec(4) during(240 seconds)),
-    requestGetFunctionalStatus_2.inject(rampUsersPerSec(1) to (4) during(60 seconds), constantUsersPerSec(4) during(240 seconds)),
-    requestGetCarePlans_2.inject(rampUsersPerSec(1) to (4) during(60 seconds), constantUsersPerSec(4) during(240 seconds)))
+    requestGetDiagnosis_2.inject(rampUsersPerSec(1) to (3) during(60 seconds), constantUsersPerSec(3) during(240 seconds)),
+    requestGetMedicationHistory_2.inject(rampUsersPerSec(1) to (3) during(60 seconds), constantUsersPerSec(3) during(240 seconds)),
+    requestGetImagingOutcome_1.inject(rampUsersPerSec(1) to (3) during(60 seconds), constantUsersPerSec(3) during(240 seconds)),
+    requestGetLaboratoryOrderOutcome_3.inject(rampUsersPerSec(1) to (3) during(60 seconds), constantUsersPerSec(3) during(240 seconds)),
+    requestGetReferralOutcome_3.inject(rampUsersPerSec(1) to (3) during(60 seconds), constantUsersPerSec(3) during(240 seconds)),
+    requestGetAlertInformation_2.inject(rampUsersPerSec(1) to (3) during(60 seconds), constantUsersPerSec(3) during(240 seconds)),
+    requestGetCareContacts_2.inject(rampUsersPerSec(1) to (3) during(60 seconds), constantUsersPerSec(3) during(240 seconds)),
+    requestGetCareDocumentation_2.inject(rampUsersPerSec(1) to (3) during(60 seconds), constantUsersPerSec(3) during(240 seconds)),
+    requestGetVaccinationHistory_2.inject(rampUsersPerSec(1) to (3) during(60 seconds), constantUsersPerSec(3) during(240 seconds)),
+    requestGetFunctionalStatus_2.inject(rampUsersPerSec(1) to (3) during(60 seconds), constantUsersPerSec(3) during(240 seconds)),
+    requestGetCarePlans_2.inject(rampUsersPerSec(1) to (3) during(60 seconds), constantUsersPerSec(3) during(240 seconds)))
     .protocols(httpConf)  
     .assertions(
       global.successfulRequests.percent.gt(99),
