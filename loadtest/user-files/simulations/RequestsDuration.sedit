@@ -4,7 +4,7 @@ import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import scala.concurrent.duration._
 
-class RequestsNTjP extends Simulation {
+class RequestsDuration extends Simulation {
 
         // Traffic will be routed toward LOAD-MOCKS based choosen personId
 	val feeder1 = csv("../user-files/data/ViaAGP.csv").circular
@@ -125,45 +125,26 @@ class RequestsNTjP extends Simulation {
   // NOTE: Injections are run in parallell, stepts within an injection are sequencial
   setUp(
     requestDirektadresserad.inject(
-	constantUsersPerSec(1) during(600 seconds)), 
+	constantUsersPerSec(1) during(2 hours)), 
     requestUpdate20.inject(
-	constantUsersPerSec(3) during(55 seconds), 
-	constantUsersPerSec(15) during(5 seconds), 
-	constantUsersPerSec(3) during(55 seconds), 
-	constantUsersPerSec(15) during(5 seconds), 
-	constantUsersPerSec(3) during(55 seconds), 
-	constantUsersPerSec(15) during(5 seconds), 
-	constantUsersPerSec(3) during(55 seconds), 
-	constantUsersPerSec(15) during(5 seconds), 
-	constantUsersPerSec(3) during(55 seconds), 
-	constantUsersPerSec(15) during(5 seconds), 
-	constantUsersPerSec(3) during(55 seconds), 
-	constantUsersPerSec(15) during(5 seconds), 
-	constantUsersPerSec(3) during(55 seconds), 
-	constantUsersPerSec(15) during(5 seconds), 
-	constantUsersPerSec(3) during(55 seconds), 
-	constantUsersPerSec(15) during(5 seconds), 
-	constantUsersPerSec(3) during(55 seconds), 
-	constantUsersPerSec(15) during(5 seconds), 
-	constantUsersPerSec(3) during(55 seconds), 
-	constantUsersPerSec(15) during(5 seconds)), 
+	constantUsersPerSec(1) during(2 hours)), 
     requestVP004.inject(
-        heavisideUsers(5) during (600 seconds)),
+        heavisideUsers(120) during (2 hours)),
     requestVP007.inject(
-        heavisideUsers(5) during (600 seconds)),
+        heavisideUsers(120) during (2 hours)),
     requestVP009.inject(
-        heavisideUsers(5) during (600 seconds)),
-    requestGetDiagnosis_2.inject(rampUsersPerSec(1) to (3) during(60 seconds), constantUsersPerSec(3) during(540 seconds)),
-    requestGetMedicationHistory_2.inject(rampUsersPerSec(1) to (3) during(60 seconds), constantUsersPerSec(3) during(540 seconds)),
-    requestGetImagingOutcome_1.inject(rampUsersPerSec(1) to (3) during(60 seconds), constantUsersPerSec(3) during(540 seconds)),
-    requestGetLaboratoryOrderOutcome_3.inject(rampUsersPerSec(1) to (3) during(60 seconds), constantUsersPerSec(3) during(540 seconds)),
-    requestGetReferralOutcome_3.inject(rampUsersPerSec(1) to (3) during(60 seconds), constantUsersPerSec(3) during(540 seconds)),
-    requestGetAlertInformation_2.inject(rampUsersPerSec(1) to (3) during(60 seconds), constantUsersPerSec(3) during(540 seconds)),
-    requestGetCareContacts_2.inject(rampUsersPerSec(1) to (3) during(60 seconds), constantUsersPerSec(3) during(540 seconds)),
-    requestGetCareDocumentation_2.inject(rampUsersPerSec(1) to (3) during(60 seconds), constantUsersPerSec(3) during(540 seconds)),
-    requestGetVaccinationHistory_2.inject(rampUsersPerSec(1) to (3) during(60 seconds), constantUsersPerSec(3) during(540 seconds)),
-    requestGetFunctionalStatus_2.inject(rampUsersPerSec(1) to (3) during(60 seconds), constantUsersPerSec(3) during(540 seconds)),
-    requestGetCarePlans_2.inject(rampUsersPerSec(1) to (3) during(60 seconds), constantUsersPerSec(3) during(540 seconds)))
+        heavisideUsers(120) during (2 hours)),
+    requestGetDiagnosis_2.inject(constantUsersPerSec(1) during(2 hours)),
+    requestGetMedicationHistory_2.inject(constantUsersPerSec(1) during(2 hours)),
+    requestGetImagingOutcome_1.inject(constantUsersPerSec(1) during(2 hours)),
+    requestGetLaboratoryOrderOutcome_3.inject(constantUsersPerSec(1) during(2 hours)),
+    requestGetReferralOutcome_3.inject(constantUsersPerSec(1) during(2 hours)),
+    requestGetAlertInformation_2.inject(constantUsersPerSec(1) during(2 hours)),
+    requestGetCareContacts_2.inject(constantUsersPerSec(1) during(2 hours)),
+    requestGetCareDocumentation_2.inject(constantUsersPerSec(1) during(2 hours)),
+    requestGetVaccinationHistory_2.inject(constantUsersPerSec(1) during(2 hours)),
+    requestGetFunctionalStatus_2.inject(constantUsersPerSec(1) during(2 hours)),
+    requestGetCarePlans_2.inject(constantUsersPerSec(1) during(2 hours)))
     .protocols(httpConf)  
     .assertions(
       global.successfulRequests.percent.gt(99),
