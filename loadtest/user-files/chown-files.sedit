@@ -14,4 +14,4 @@ chown -R $DIR_OWNER $DIR/../results
 #------------------------------------
 # Run Load test (mute cli questions)
 #------------------------------------
-gatling.sh -s SKLTP.RequestsNTjP
+gatling.sh -s SKLTP.${SIMULATION}
