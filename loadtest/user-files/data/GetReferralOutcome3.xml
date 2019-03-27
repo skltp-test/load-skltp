@@ -6,7 +6,7 @@
     <soap:Body>
         <GetReferralOutcome xmlns="urn:riv:clinicalprocess:healthcond:actoutcome:GetReferralOutcomeResponder:3" xmlns:ns2="urn:riv:clinicalprocess:healthcond:actoutcome:3" xmlns:ns3="urn:riv:itintegration:registry:1">
             <patientId>
-                <ns2:id>${patientId2}</ns2:id>
+                <ns2:id>${patientId1}</ns2:id>
                 <ns2:type>1.2.752.129.2.1.3.1</ns2:type>
             </patientId>
             <datePeriod>
