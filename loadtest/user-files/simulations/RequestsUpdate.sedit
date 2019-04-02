@@ -33,11 +33,11 @@ class RequestsUpdate extends Simulation {
   // NOTE: Injections are run in parallell, stepts within an injection are sequencial
   setUp(
     requestUpdate1000.inject(
-	heavisideUsers(20) during (20 minutes)), 
+	heavisideUsers(40) during (20 minutes)), 
     requestGetCareContacts_2.inject(constantUsersPerSec(1) during(20 minutes)))
     .protocols(httpConf)  
     .assertions(
       details("Update1000").successfulRequests.percent.is(100),
-      details("GetCareContacts_2").successfulRequests.percent.is(95))
+      details("GetCareContacts_2").successfulRequests.percent.gt(95))
   
 }
