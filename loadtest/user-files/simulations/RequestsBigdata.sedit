@@ -61,49 +61,49 @@ class RequestsBigdata extends Simulation {
 			.check(status.is(200), responseTimeInMillis.lt(35000)))
 
 	// Available scenarios for different types of setups
-	val requestGetDiagnosis_2 = scenario("GetDiagnosis_2").feed(feeder1).exec(GetDiagnosis_2) 
-	val requestGetMedicationHistory_2 = scenario("GetMedicationHistory_2").feed(feeder1).exec(GetMedicationHistory_2)
-	val requestGetImagingOutcome_1 = scenario("GetImagingOutcome_1").feed(feeder1).exec(GetImagingOutcome_1)
-	val requestGetLaboratoryOrderOutcome_3 = scenario("GetLaboratoryOrderOutcome_3").feed(feeder1).exec(GetLaboratoryOrderOutcome_3)
-	val requestGetReferralOutcome_3 = scenario("GetReferralOutcome_3").feed(feeder1).exec(GetReferralOutcome_3)
-	val requestGetAlertInformation_2 = scenario("GetAlertInformation_2").feed(feeder1).exec(GetAlertInformation_2)
-	val requestGetCareDocumentation_2 = scenario("GetCareDocumentation_2").feed(feeder1).exec(GetCareDocumentation_2)
-	val requestGetVaccinationHistory_2 = scenario("GetVaccinationHistory_2").feed(feeder1).exec(GetVaccinationHistory_2)
-	val requestGetFunctionalStatus_2 = scenario("GetFunctionalStatus_2").feed(feeder1).exec(GetFunctionalStatus_2)
+	val requestGetDiagnosis_2 = scenario("GetDiagnosis_2_Bigdata").feed(feeder1).exec(GetDiagnosis_2) 
+	val requestGetMedicationHistory_2 = scenario("GetMedicationHistory_2_Bigdata").feed(feeder1).exec(GetMedicationHistory_2)
+	val requestGetImagingOutcome_1 = scenario("GetImagingOutcome_1_Bigdata").feed(feeder1).exec(GetImagingOutcome_1)
+	val requestGetLaboratoryOrderOutcome_3 = scenario("GetLaboratoryOrderOutcome_3_Bigdata").feed(feeder1).exec(GetLaboratoryOrderOutcome_3)
+	val requestGetReferralOutcome_3 = scenario("GetReferralOutcome_3_Bigdata").feed(feeder1).exec(GetReferralOutcome_3)
+	val requestGetAlertInformation_2 = scenario("GetAlertInformation_2_Bigdata").feed(feeder1).exec(GetAlertInformation_2)
+	val requestGetCareDocumentation_2 = scenario("GetCareDocumentation_2_Bigdata").feed(feeder1).exec(GetCareDocumentation_2)
+	val requestGetVaccinationHistory_2 = scenario("GetVaccinationHistory_2_Bigdata").feed(feeder1).exec(GetVaccinationHistory_2)
+	val requestGetFunctionalStatus_2 = scenario("GetFunctionalStatus_2_Bigdata").feed(feeder1).exec(GetFunctionalStatus_2)
         // Normal load
-        val normalGetDiagnosis_2 = scenario("GetDiagnosis_2").feed(feeder2).exec(GetDiagnosis_2)
-        val normalGetMedicationHistory_2 = scenario("GetMedicationHistory_2").feed(feeder2).exec(GetMedicationHistory_2)
-        val normalGetImagingOutcome_1 = scenario("GetImagingOutcome_1").feed(feeder2).exec(GetImagingOutcome_1)
-        val normalGetLaboratoryOrderOutcome_3 = scenario("GetLaboratoryOrderOutcome_3").feed(feeder2).exec(GetLaboratoryOrderOutcome_3)
-        val normalGetReferralOutcome_3 = scenario("GetReferralOutcome_3").feed(feeder2).exec(GetReferralOutcome_3)
-        val normalGetAlertInformation_2 = scenario("GetAlertInformation_2").feed(feeder2).exec(GetAlertInformation_2)
-        val normalGetCareDocumentation_2 = scenario("GetCareDocumentation_2").feed(feeder2).exec(GetCareDocumentation_2)
-        val normalGetVaccinationHistory_2 = scenario("GetVaccinationHistory_2").feed(feeder2).exec(GetVaccinationHistory_2)
-        val normalGetFunctionalStatus_2 = scenario("GetFunctionalStatus_2").feed(feeder2).exec(GetFunctionalStatus_2)
+        val normalGetDiagnosis_2 = scenario("GetDiagnosis_2_Normal").feed(feeder2).exec(GetDiagnosis_2)
+        val normalGetMedicationHistory_2 = scenario("GetMedicationHistory_2_Normal").feed(feeder2).exec(GetMedicationHistory_2)
+        val normalGetImagingOutcome_1 = scenario("GetImagingOutcome_1_Normal").feed(feeder2).exec(GetImagingOutcome_1)
+        val normalGetLaboratoryOrderOutcome_3 = scenario("GetLaboratoryOrderOutcome_3_Normal").feed(feeder2).exec(GetLaboratoryOrderOutcome_3)
+        val normalGetReferralOutcome_3 = scenario("GetReferralOutcome_3_Normal").feed(feeder2).exec(GetReferralOutcome_3)
+        val normalGetAlertInformation_2 = scenario("GetAlertInformation_2_Normal").feed(feeder2).exec(GetAlertInformation_2)
+        val normalGetCareDocumentation_2 = scenario("GetCareDocumentation_2_Normal").feed(feeder2).exec(GetCareDocumentation_2)
+        val normalGetVaccinationHistory_2 = scenario("GetVaccinationHistory_2_Normal").feed(feeder2).exec(GetVaccinationHistory_2)
+        val normalGetFunctionalStatus_2 = scenario("GetFunctionalStatus_2_Normal").feed(feeder2).exec(GetFunctionalStatus_2)
 
 
 
   // Simulate NPÖ that requests patient data once per second
   // NOTE: Injections are run in parallell, stepts within an injection are sequencial
   setUp(
-    requestGetDiagnosis_2.inject(atOnceUsers(1)),
-    requestGetMedicationHistory_2.inject(atOnceUsers(1)),
-    requestGetImagingOutcome_1.inject(atOnceUsers(1)),
-    requestGetLaboratoryOrderOutcome_3.inject(atOnceUsers(1)),
-    requestGetReferralOutcome_3.inject(atOnceUsers(1)),
-    requestGetAlertInformation_2.inject(atOnceUsers(1)),
-    requestGetCareDocumentation_2.inject(atOnceUsers(1)),
-    requestGetVaccinationHistory_2.inject(atOnceUsers(1)),
-    requestGetFunctionalStatus_2.inject(atOnceUsers(1)),
-    normalGetDiagnosis_2.inject(nothingFor(60 seconds), constantUsersPerSec(1) during (120 seconds)),
-    normalGetMedicationHistory_2.inject(nothingFor(60 seconds), constantUsersPerSec(1) during (120 seconds)),
-    normalGetImagingOutcome_1.inject(nothingFor(60 seconds), constantUsersPerSec(1) during (120 seconds)),
-    normalGetLaboratoryOrderOutcome_3.inject(nothingFor(60 seconds), constantUsersPerSec(1) during (120 seconds)),
-    normalGetReferralOutcome_3.inject(nothingFor(60 seconds), constantUsersPerSec(1) during (120 seconds)),
-    normalGetAlertInformation_2.inject(nothingFor(60 seconds), constantUsersPerSec(1) during (120 seconds)),
-    normalGetCareDocumentation_2.inject(nothingFor(60 seconds), constantUsersPerSec(1) during (120 seconds)),
-    normalGetVaccinationHistory_2.inject(nothingFor(60 seconds), constantUsersPerSec(1) during (120 seconds)),
-    normalGetFunctionalStatus_2.inject(nothingFor(60 seconds), constantUsersPerSec(1) during (120 seconds)))
+    requestGetDiagnosis_2.inject(nothingFor(20 seconds), atOnceUsers(1)),
+    requestGetMedicationHistory_2.inject(nothingFor(20 seconds), atOnceUsers(1)),
+    requestGetImagingOutcome_1.inject(nothingFor(20 seconds), atOnceUsers(1)),
+    requestGetLaboratoryOrderOutcome_3.inject(nothingFor(20 seconds), atOnceUsers(1)),
+    requestGetReferralOutcome_3.inject(nothingFor(20 seconds), atOnceUsers(1)),
+    requestGetAlertInformation_2.inject(nothingFor(20 seconds), atOnceUsers(1)),
+    requestGetCareDocumentation_2.inject(nothingFor(20 seconds), atOnceUsers(1)),
+    requestGetVaccinationHistory_2.inject(nothingFor(20 seconds), atOnceUsers(1)),
+    requestGetFunctionalStatus_2.inject(nothingFor(20 seconds), atOnceUsers(1)),
+    normalGetDiagnosis_2.inject(constantUsersPerSec(1) during (120 seconds)),
+    normalGetMedicationHistory_2.inject(constantUsersPerSec(1) during (120 seconds)),
+    normalGetImagingOutcome_1.inject(constantUsersPerSec(1) during (120 seconds)),
+    normalGetLaboratoryOrderOutcome_3.inject(constantUsersPerSec(1) during (120 seconds)),
+    normalGetReferralOutcome_3.inject(constantUsersPerSec(1) during (120 seconds)),
+    normalGetAlertInformation_2.inject(constantUsersPerSec(1) during (120 seconds)),
+    normalGetCareDocumentation_2.inject(constantUsersPerSec(1) during (120 seconds)),
+    normalGetVaccinationHistory_2.inject(constantUsersPerSec(1) during (120 seconds)),
+    normalGetFunctionalStatus_2.inject(constantUsersPerSec(1) during (120 seconds)))
     .protocols(httpConf)  
     .assertions(
       details("GetDiagnosis_2").successfulRequests.percent.gt(80),
