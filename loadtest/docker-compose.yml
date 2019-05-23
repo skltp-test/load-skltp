@@ -3,6 +3,8 @@ services:
   testsuite:
     image: "denvazh/gatling:3.0.3"
     command: -m
+    #stdin_open: true
+    #tty: true
     environment:
       # Använd sys.env("ENDPOINT") i simuleringarna för att få detta värde.
       - ENDPOINT=https://test.esb.ntjp.se/vp/clinicalprocess/healthcond/description/GetCareDocumentation/2/rivtabp21
