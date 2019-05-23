@@ -15,17 +15,18 @@ class RequestsUpdate extends Simulation {
 		.acceptEncodingHeader("gzip, deflate")
 		.userAgentHeader("SKLTP load tests")
 
-	   val GetCareContacts_2 = exec(http("GetCareContacts_2")
-                .post("/clinicalprocess/logistics/logistics/GetCareContacts/2/rivtabp21")
-                .body(ElFileBody("user-files/data/GetCareContacts2.xml")).asXml
-			.check(status.is(200), responseTimeInMillis.lt(35000)))
+        val GetDiagnosis_2 = exec(http("GetDiagnosis_2")
+                .post("/clinicalprocess/healthcond/description/GetDiagnosis/2/rivtabp21")
+                .body(ElFileBody("user-files/data/GetDiagnosis2.xml")).asXml
+                .check(status.is(200), responseTimeInMillis.lt(35000)))
 
-           val Update1000 = exec(http("Update1000")
+
+        val Update1000 = exec(http("Update1000")
                 .post("/Update/1/rivtabp21")
-                .body(ElFileBody("user-files/data/Update1000.xml")).asXml
+                .body(ElFileBody("user-files/data/Update1000_GD.xml")).asXml
                         .check(status.is(200), responseTimeInMillis.lt(35000)))
 
-	val requestGetCareContacts_2 = scenario("GetCareContacts_2").feed(feeder1).exec(GetCareContacts_2)
+        val requestGetDiagnosis_2 = scenario("GetDiagnosis_2").feed(feeder1).exec(GetDiagnosis_2)
         val requestUpdate1000 = scenario("Update1000").feed(feederUpdate).exec(Update1000)
 
 
@@ -33,8 +34,8 @@ class RequestsUpdate extends Simulation {
   // NOTE: Injections are run in parallell, stepts within an injection are sequencial
   setUp(
     requestUpdate1000.inject(
-	heavisideUsers(10) during (20 minutes)), 
-    requestGetCareContacts_2.inject(constantUsersPerSec(1) during(20 minutes)))
+	heavisideUsers(40) during (20 minutes)), 
+    requestGetDiagnosis_2.inject(constantUsersPerSec(1) during(20 minutes)))
     .protocols(httpConf)  
     .assertions(
       details("Update1000").successfulRequests.percent.is(100),

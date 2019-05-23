@@ -81,7 +81,7 @@ class RequestsNTjP extends Simulation {
 
            val Update20 = exec(http("Update20")
                 .post("/Update/1/rivtabp21")
-                .body(ElFileBody("user-files/data/Update20.xml")).asXml
+                .body(ElFileBody("user-files/data/Update20_GD.xml")).asXml
                         .check(status.is(200), responseTimeInMillis.lt(35000)))
 
            val VP004 = exec(http("VP004")
@@ -127,26 +127,26 @@ class RequestsNTjP extends Simulation {
     requestDirektadresserad.inject(
 	constantUsersPerSec(1) during(600 seconds)), 
     requestUpdate20.inject(
-	constantUsersPerSec(1) during(55 seconds), 
-	constantUsersPerSec(5) during(5 seconds), 
-	constantUsersPerSec(1) during(55 seconds), 
-	constantUsersPerSec(5) during(5 seconds), 
-	constantUsersPerSec(1) during(55 seconds), 
-	constantUsersPerSec(5) during(5 seconds), 
-	constantUsersPerSec(1) during(55 seconds), 
-	constantUsersPerSec(5) during(5 seconds), 
-	constantUsersPerSec(1) during(55 seconds), 
-	constantUsersPerSec(5) during(5 seconds), 
-	constantUsersPerSec(1) during(55 seconds), 
-	constantUsersPerSec(5) during(5 seconds), 
-	constantUsersPerSec(1) during(55 seconds), 
-	constantUsersPerSec(5) during(5 seconds), 
-	constantUsersPerSec(1) during(55 seconds), 
-	constantUsersPerSec(5) during(5 seconds), 
-	constantUsersPerSec(1) during(55 seconds), 
-	constantUsersPerSec(5) during(5 seconds), 
-	constantUsersPerSec(1) during(55 seconds), 
-	constantUsersPerSec(5) during(5 seconds)), 
+	constantUsersPerSec(3) during(55 seconds), 
+	constantUsersPerSec(15) during(5 seconds), 
+	constantUsersPerSec(3) during(55 seconds), 
+	constantUsersPerSec(15) during(5 seconds), 
+	constantUsersPerSec(3) during(55 seconds), 
+	constantUsersPerSec(15) during(5 seconds), 
+	constantUsersPerSec(3) during(55 seconds), 
+	constantUsersPerSec(15) during(5 seconds), 
+	constantUsersPerSec(3) during(55 seconds), 
+	constantUsersPerSec(15) during(5 seconds), 
+	constantUsersPerSec(3) during(55 seconds), 
+	constantUsersPerSec(15) during(5 seconds), 
+	constantUsersPerSec(3) during(55 seconds), 
+	constantUsersPerSec(15) during(5 seconds), 
+	constantUsersPerSec(3) during(55 seconds), 
+	constantUsersPerSec(15) during(5 seconds), 
+	constantUsersPerSec(3) during(55 seconds), 
+	constantUsersPerSec(15) during(5 seconds), 
+	constantUsersPerSec(3) during(55 seconds), 
+	constantUsersPerSec(15) during(5 seconds)), 
     requestVP004.inject(
         heavisideUsers(5) during (600 seconds)),
     requestVP007.inject(
