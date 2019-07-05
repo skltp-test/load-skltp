@@ -106,6 +106,7 @@ class RequestsBigdata extends Simulation {
     normalGetFunctionalStatus_2.inject(constantUsersPerSec(1) during (120 seconds)))
     .protocols(httpConf)  
     .assertions(
+      global.successfulRequests.percent.gt(99),
       details("GetDiagnosis_2").successfulRequests.percent.gt(80),
       details("GetMedicationHistory_2").successfulRequests.percent.gt(80),
       details("GetImagingOutcome_1").successfulRequests.percent.gt(80), 

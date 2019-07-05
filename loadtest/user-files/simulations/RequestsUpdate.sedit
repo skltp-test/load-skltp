@@ -38,6 +38,7 @@ class RequestsUpdate extends Simulation {
     requestGetDiagnosis_2.inject(constantUsersPerSec(1) during(20 minutes)))
     .protocols(httpConf)  
     .assertions(
+      global.successfulRequests.percent.gt(99),
       details("Update1000").successfulRequests.percent.is(100),
       details("GetCareContacts_2").successfulRequests.percent.gt(95))
   
