@@ -40,6 +40,6 @@ class RequestsUpdate extends Simulation {
     .assertions(
       global.successfulRequests.percent.gt(99),
       details("Update1000").successfulRequests.percent.is(100),
-      details("GetCareContacts_2").successfulRequests.percent.gt(95))
+      details("GetDiagnosis_2").successfulRequests.percent.gt(95))
   
 }
