@@ -19,7 +19,7 @@ pipeline {
                         ls -l ./conf/truststore.p12
                         sed -i -e "s/TRUSTSTOREVARIABLE/\"truststore.p12\"/g" -e "s/TRUSTSTOREPASSWORD/\"${TRUSTKEYPWD}\"/g" ./conf/gatling.conf
                         sed -e "s/SIMULATION/\"RequestsDuration\"/g" ./user-files/chown-files.sedit > ./user-files/chown-files.sh
-                        sed -e "/TARGETHOST/\"$TARGETHOST\"/g" ./user-files/simulations/RequestsDuration.sedit > ./user-files/simulations/RequestsDuration.scala
+                        sed -e "s/TARGETHOST/\"$TARGETHOST\"/g" ./user-files/simulations/RequestsDuration.sedit > ./user-files/simulations/RequestsDuration.scala
                         [[ ! -f /tmp/docker-compose ]] && curl -L "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-Linux-x86_64" -o /tmp/docker-compose
                         chmod +x /tmp/docker-compose
                         /tmp/docker-compose run --rm testsuite
