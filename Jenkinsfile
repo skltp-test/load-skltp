@@ -20,7 +20,9 @@ pipeline {
                         sed -i -e 's@TRUSTSTOREVARIABLE@'"truststore.p12"'@; s@TRUSTSTOREPASSWORD@'"${TRUSTKEYPWD}"'@' ./conf/gatling.conf
                         sed -e 's@SIMULATION@'"RequestsNTjP"'@' ./user-files/chown-files.sedit > ./user-files/chown-files.sh
 			sed -e 's@TARGETHOST@'"${TARGETHOST}"'@' ./user-files/simulations/RequestsNTjP.sedit > ./user-files/simulations/RequestsNTjP.scala
-                        docker-compose run --rm testsuite
+			[[ ! -f /tmp/docker-compose ]] && curl -L "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m)" -o /tmp/docker-compose
+			chmod +x /tmp/docker-compose
+			/tmp/docker-compose run --rm testsuite
                     """
                 }
                 gatlingArchive()
