@@ -14,13 +14,13 @@ pipeline {
                         cd loadtest
                         cat ${CERTKEY} > ./conf/cert.p12
                         ls -l ./conf/cert.p12
-                        sed -e 's@KEYSTOREVARIABLE@'"cert.p12"'@; s@KEYSTOREPASSWORD@'"${CERTKEYPWD}"'@' ./conf/gatling.sedit > ./conf/gatling.conf
+                        sed -e "s/KEYSTOREVARIABLE/\"cert.p12\"/g" -e "s/KEYSTOREPASSWORD/\"${CERTKEYPWD}\"/g" ./conf/gatling.sedit > ./conf/gatling.conf
                         cat ${TRUSTKEY} > ./conf/truststore.p12
                         ls -l ./conf/truststore.p12
-                        sed -i -e 's@TRUSTSTOREVARIABLE@'"truststore.p12"'@; s@TRUSTSTOREPASSWORD@'"${TRUSTKEYPWD}"'@' ./conf/gatling.conf
-                        sed -e 's@SIMULATION@'"RequestsNTjP"'@' ./user-files/chown-files.sedit > ./user-files/chown-files.sh
-			sed -e 's@TARGETHOST@'"${TARGETHOST}"'@' ./user-files/simulations/RequestsNTjP.sedit > ./user-files/simulations/RequestsNTjP.scala
-			[[ ! -f /tmp/docker-compose ]] && curl -L "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m)" -o /tmp/docker-compose
+                        sed -i -e "s/TRUSTSTOREVARIABLE/\"truststore.p12\"/g" -e "s/TRUSTSTOREPASSWORD/\"${TRUSTKEYPWD}\"/g" ./conf/gatling.conf
+                        sed -e "s/SIMULATION/\"RequestsNTjP\"/g" ./user-files/chown-files.sedit > ./user-files/chown-files.sh
+                        sed -e "s/TARGETHOST/\"$TARGETHOST\"/g" ./user-files/simulations/RequestsNTjP.sedit > ./user-files/simulations/RequestsNTjP.scala
+                        [[ ! -f /tmp/docker-compose ]] && curl -L "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-Linux-x86_64" -o /tmp/docker-compose
 			chmod +x /tmp/docker-compose
 			/tmp/docker-compose run --rm testsuite
                     """
