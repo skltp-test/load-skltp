@@ -31,6 +31,7 @@ pipeline {
     }
     post {
         always {
+	    sh "cd loadtest && /tmp/docker-compose down"
             junit 'loadtest/results/**/assertions.xml'
         }
     }
