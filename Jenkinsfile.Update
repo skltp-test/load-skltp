@@ -20,7 +20,8 @@ pipeline {
                         sed -i -e 's@TRUSTSTOREVARIABLE@'"truststore.p12"'@; s@TRUSTSTOREPASSWORD@'"${TRUSTKEYPWD}"'@' ./conf/gatling.conf
                         sed -e 's@SIMULATION@'"RequestsUpdate"'@' ./user-files/chown-files.sedit > ./user-files/chown-files.sh
 			sed -e 's@TARGETHOST@'"${TARGETHOST}"'@' ./user-files/simulations/RequestsUpdate.sedit > ./user-files/simulations/RequestsUpdate.scala
-                        docker-compose run --rm testsuite
+                        docker-compose down
+			docker-compose run --rm testsuite
                     """
                 }
                 gatlingArchive()
@@ -29,6 +30,7 @@ pipeline {
     }
     post {
         always {
+            sh 'cd loadtest && /tmp/docker-compose down'
             junit 'loadtest/results/**/assertions.xml'
         }
     }
