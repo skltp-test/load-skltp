@@ -125,33 +125,37 @@ class RequestsDuration extends Simulation {
   // NOTE: Injections are run in parallell, stepts within an injection are sequencial
   setUp(
     requestDirektadresserad.inject(
-	constantUsersPerSec(3) during(1 hours)), 
+	constantUsersPerSec(3) during(2 hours)), 
     requestUpdate20.inject(
-	constantUsersPerSec(3) during(1 hours)), 
+	constantUsersPerSec(3) during(2 hours)), 
     requestVP004.inject(
-        heavisideUsers(120) during (1 hours)),
+        heavisideUsers(120) during (2 hours)),
     requestVP007.inject(
-        heavisideUsers(120) during (1 hours)),
+        heavisideUsers(120) during (2 hours)),
     requestVP009.inject(
-        heavisideUsers(120) during (1 hours)),
-    requestGetDiagnosis_2.inject(constantUsersPerSec(3) during(1 hours)),
-    requestGetImagingOutcome_1.inject(constantUsersPerSec(3) during(1 hours)),
-    requestGetLaboratoryOrderOutcome_3.inject(constantUsersPerSec(3) during(1 hours)),
-    requestGetReferralOutcome_3.inject(constantUsersPerSec(3) during(1 hours)),
-    requestGetAlertInformation_2.inject(constantUsersPerSec(3) during(1 hours)),
-    requestGetCareDocumentation_2.inject(constantUsersPerSec(3) during(1 hours)),
-    requestGetVaccinationHistory_2.inject(constantUsersPerSec(3) during(1 hours)),
-    requestGetFunctionalStatus_2.inject(constantUsersPerSec(3) during(1 hours)),
-    requestGetCarePlans_2.inject(constantUsersPerSec(3) during(1 hours)))
+        heavisideUsers(120) during (2 hours)),
+    requestGetDiagnosis_2.inject(constantUsersPerSec(3) during(2 hours)),
+    requestGetMedicationHistory_2.inject(constantUsersPerSec(3) during(2 hours)),
+    requestGetImagingOutcome_1.inject(constantUsersPerSec(3) during(2 hours)),
+    requestGetLaboratoryOrderOutcome_3.inject(constantUsersPerSec(3) during(2 hours)),
+    requestGetReferralOutcome_3.inject(constantUsersPerSec(3) during(2 hours)),
+    requestGetAlertInformation_2.inject(constantUsersPerSec(3) during(2 hours)),
+    requestGetCareContacts_2.inject(constantUsersPerSec(3) during(2 hours)),
+    requestGetCareDocumentation_2.inject(constantUsersPerSec(3) during(2 hours)),
+    requestGetVaccinationHistory_2.inject(constantUsersPerSec(3) during(2 hours)),
+    requestGetFunctionalStatus_2.inject(constantUsersPerSec(3) during(2 hours)),
+    requestGetCarePlans_2.inject(constantUsersPerSec(3) during(2 hours)))
     .protocols(httpConf)  
     .assertions(
       global.successfulRequests.percent.gt(99),
       details("Direktadresserad").successfulRequests.percent.is(100),
       details("GetDiagnosis_2").successfulRequests.percent.is(100),
+      details("GetMedicationHistory_2").successfulRequests.percent.is(100),
       details("GetImagingOutcome_1").successfulRequests.percent.is(100), 
       details("GetLaboratoryOrderOutcome_3").successfulRequests.percent.is(100), 
       details("GetReferralOutcome_3").successfulRequests.percent.is(100), 
       details("GetAlertInformation_2").successfulRequests.percent.is(100), 
+      details("GetCareContacts_2").successfulRequests.percent.is(100), 
       details("GetCareDocumentation_2").successfulRequests.percent.is(100), 
       details("GetVaccinationHistory_2").successfulRequests.percent.is(100), 
       details("GetFunctionalStatus_2").successfulRequests.percent.is(100), 
