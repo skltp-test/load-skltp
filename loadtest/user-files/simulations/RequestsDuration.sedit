@@ -125,26 +125,26 @@ class RequestsDuration extends Simulation {
   // NOTE: Injections are run in parallell, stepts within an injection are sequencial
   setUp(
     requestDirektadresserad.inject(
-	constantUsersPerSec(3) during(2 hours)), 
+	constantUsersPerSec(3) during(1 hours)), 
     requestUpdate20.inject(
-	constantUsersPerSec(3) during(2 hours)), 
+	constantUsersPerSec(3) during(1 hours)), 
     requestVP004.inject(
-        heavisideUsers(120) during (2 hours)),
+        heavisideUsers(120) during (1 hours)),
     requestVP007.inject(
-        heavisideUsers(120) during (2 hours)),
+        heavisideUsers(120) during (1 hours)),
     requestVP009.inject(
-        heavisideUsers(120) during (2 hours)),
-    requestGetDiagnosis_2.inject(constantUsersPerSec(3) during(2 hours)),
-    requestGetMedicationHistory_2.inject(constantUsersPerSec(3) during(2 hours)),
-    requestGetImagingOutcome_1.inject(constantUsersPerSec(3) during(2 hours)),
-    requestGetLaboratoryOrderOutcome_3.inject(constantUsersPerSec(3) during(2 hours)),
-    requestGetReferralOutcome_3.inject(constantUsersPerSec(3) during(2 hours)),
-    requestGetAlertInformation_2.inject(constantUsersPerSec(3) during(2 hours)),
-    requestGetCareContacts_2.inject(constantUsersPerSec(3) during(2 hours)),
-    requestGetCareDocumentation_2.inject(constantUsersPerSec(3) during(2 hours)),
-    requestGetVaccinationHistory_2.inject(constantUsersPerSec(3) during(2 hours)),
-    requestGetFunctionalStatus_2.inject(constantUsersPerSec(3) during(2 hours)),
-    requestGetCarePlans_2.inject(constantUsersPerSec(3) during(2 hours)))
+        heavisideUsers(120) during (1 hours)),
+    requestGetDiagnosis_2.inject(constantUsersPerSec(3) during(1 hours)),
+    requestGetMedicationHistory_2.inject(constantUsersPerSec(3) during(1 hours)),
+    requestGetImagingOutcome_1.inject(constantUsersPerSec(3) during(1 hours)),
+    requestGetLaboratoryOrderOutcome_3.inject(constantUsersPerSec(3) during(1 hours)),
+    requestGetReferralOutcome_3.inject(constantUsersPerSec(3) during(1 hours)),
+    requestGetAlertInformation_2.inject(constantUsersPerSec(3) during(1 hours)),
+    requestGetCareContacts_2.inject(constantUsersPerSec(3) during(1 hours)),
+    requestGetCareDocumentation_2.inject(constantUsersPerSec(3) during(1 hours)),
+    requestGetVaccinationHistory_2.inject(constantUsersPerSec(3) during(1 hours)),
+    requestGetFunctionalStatus_2.inject(constantUsersPerSec(3) during(1 hours)),
+    requestGetCarePlans_2.inject(constantUsersPerSec(3) during(1 hours)))
     .protocols(httpConf)  
     .assertions(
       global.successfulRequests.percent.gt(99),
