@@ -9,7 +9,7 @@ pipeline {
                 withCredentials([certificate(credentialsId: 'TSTNMT2321000156-B02', keystoreVariable: 'CERTKEY', passwordVariable: 'CERTKEYPWD')]) {
                     sh """
                         #! /bin/bash
-			            echo "Tests will be run against the following host: ${TARGETHOST}"
+                        echo "Tests will be run against the following host: ${TARGETHOST}"
                         cd loadtest
 
                         rm -fr ./conf/truststore.p12
@@ -21,7 +21,7 @@ pipeline {
                         sed -e 's@KEYSTOREVARIABLE@'"cert.p12"'@; s@KEYSTOREPASSWORD@'"${CERTKEYPWD}"'@' ./conf/gatling.sedit > ./conf/gatling.conf
                         sed -i -e 's@TRUSTSTOREVARIABLE@'"truststore.p12"'@; s@TRUSTSTOREPASSWORD@'"banan69"'@' ./conf/gatling.conf
                         sed -e 's@SIMULATION@'"RequestsBigdata"'@' ./user-files/chown-files.sedit > ./user-files/chown-files.sh
-			            sed -e 's@TARGETHOST@'"${TARGETHOST}"'@' ./user-files/simulations/RequestsBigdata.sedit > ./user-files/simulations/RequestsBigdata.scala
+                        sed -e 's@TARGETHOST@'"${TARGETHOST}"'@' ./user-files/simulations/RequestsBigdata.sedit > ./user-files/simulations/RequestsBigdata.scala
                         docker-compose run --rm testsuite
                     """
                 }}

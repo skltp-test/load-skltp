@@ -5,24 +5,26 @@ pipeline {
     stages {
         stage('Load testing') {
             steps {
-                withCredentials([certificate(credentialsId: 'TSTNMT2321000156-B02', keystoreVariable: 'CERTKEY', passwordVariable: 'CERTKEYPWD'),
-                                 certificate(credentialsId: 'TSTNMT_TRUSTSTORE', keystoreVariable: 'TRUSTKEY', passwordVariable: 'TRUSTKEYPWD')]) {
+                configFileProvider([configFile(fileId: '267423b6-76ad-4e54-a7c2-222fafbf7fb9', variable: 'TRUST_PEM')]) {
+                withCredentials([certificate(credentialsId: 'TSTNMT2321000156-B02', keystoreVariable: 'CERTKEY', passwordVariable: 'CERTKEYPWD')]) {
                     sh """
                         #! /bin/bash
-			echo "Tests will be run against the following host: ${TARGETHOST}"
-                        keytool -list -keystore ${TRUSTKEY} -storepass ${TRUSTKEYPWD} -storetype pkcs12
+                        echo "Tests will be run against the following host: ${TARGETHOST}"
                         cd loadtest
+
+                        rm -fr ./conf/truststore.p12
+                        csplit -z -f ./conf/trust- $TRUST_PEM '/-----END CERTIFICATE-----/+1' '{*}' 
+                        ls ./conf/trust-*| xargs -I{} keytool -importcert -storetype PKCS12 -keystore ./conf/truststore.p12 -storepass banan69 -file {} -alias {} -noprompt
+
                         cat ${CERTKEY} > ./conf/cert.p12
                         ls -l ./conf/cert.p12
                         sed -e 's@KEYSTOREVARIABLE@'"cert.p12"'@; s@KEYSTOREPASSWORD@'"${CERTKEYPWD}"'@' ./conf/gatling.sedit > ./conf/gatling.conf
-                        cat ${TRUSTKEY} > ./conf/truststore.p12
-                        ls -l ./conf/truststore.p12
-                        sed -i -e 's@TRUSTSTOREVARIABLE@'"truststore.p12"'@; s@TRUSTSTOREPASSWORD@'"${TRUSTKEYPWD}"'@' ./conf/gatling.conf
+                        sed -i -e 's@TRUSTSTOREVARIABLE@'"truststore.p12"'@; s@TRUSTSTOREPASSWORD@'"banan69"'@' ./conf/gatling.conf
                         sed -e 's@SIMULATION@'"RequestsUpdate"'@' ./user-files/chown-files.sedit > ./user-files/chown-files.sh
-			sed -e 's@TARGETHOST@'"${TARGETHOST}"'@' ./user-files/simulations/RequestsUpdate.sedit > ./user-files/simulations/RequestsUpdate.scala
+                        sed -e 's@TARGETHOST@'"${TARGETHOST}"'@' ./user-files/simulations/RequestsUpdate.sedit > ./user-files/simulations/RequestsUpdate.scala
                         docker-compose run --rm testsuite
                     """
-                }
+                }}
                 gatlingArchive()
             }
         }
