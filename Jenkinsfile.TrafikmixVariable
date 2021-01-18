@@ -1,6 +1,6 @@
 pipeline {
 
-    agent docker
+    agent { label 'docker' }
     parameters {
         string(name: 'TARGETHOST', defaultValue: 'dev.esb.ntjp.se', description: 'Test target')
         string(name: 'SOURCESYSTEMHSA', defaultValue: 'LOAD-MOCKS', description: 'Mock environment')
