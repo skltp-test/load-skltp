@@ -35,6 +35,7 @@ pipeline {
                         sed -i -e 's@DIRECT_RPS@'"${DIRECT_RPS}"'@; s@ERR3_REQ@'"${ERR3_REQ}"'@' ./user-files/simulations/RequestsTrafikmixVariable.scala
                         sed -i -e 's@UPDATE_RPS_MIN@'"${UPDATE_RPS_MIN}"'@; s@UPDATE_RPS_MAX@'"${UPDATE_RPS_MAX}"'@' ./user-files/simulations/RequestsTrafikmixVariable.scala
                         sed -i -e 's@AGG11_RPS_MIN@'"${AGG11_RPS_MIN}"'@; s@AGG11_RPS_MAX@'"${AGG11_RPS_MAX}"'@' ./user-files/simulations/RequestsTrafikmixVariable.scala
+                        cat user-files/simulations/RequestsTrafikmixVariable.scala
                         docker-compose run --rm testsuite
                     """
                 }}

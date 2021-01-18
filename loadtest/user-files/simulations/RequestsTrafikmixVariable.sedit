@@ -153,17 +153,39 @@ class RequestsTrafikmixVariable extends Simulation {
         heavisideUsers(ERR3_REQ) during (600 seconds)),
     requestVP009.inject(
         heavisideUsers(ERR3_REQ) during (600 seconds)),
-    requestGetDiagnosis_2.inject(rampUsersPerSec(AGG11_RPS_MIN) to (AGG11_RPS_MAX) during(60 seconds), constantUsersPerSec(AGP_RPS_MAX) during(540 seconds)),
-    requestGetMedicationHistory_2.inject(rampUsersPerSec(AGG11_RPS_MIN) to (AGG11_RPS_MAX) during(60 seconds), constantUsersPerSec(AGG11_RPS_MAX) during(540 seconds)),
-    requestGetImagingOutcome_1.inject(rampUsersPerSec(AGG11_RPS_MIN) to (AGG11_RPS_MAX) during(60 seconds), constantUsersPerSec(AGG11_RPS_MAX) during(540 seconds)),
-    requestGetLaboratoryOrderOutcome_3.inject(rampUsersPerSec(AGG11_RPS_MIN) to (AGG11_RPS_MAX) during(60 seconds), constantUsersPerSec(AGG11_RPS_MAX) during(540 seconds)),
-    requestGetReferralOutcome_3.inject(rampUsersPerSec(AGG11_RPS_MIN) to (AGG11_RPS_MAX) during(60 seconds), constantUsersPerSec(AGG11_RPS_MAX) during(540 seconds)),
-    requestGetAlertInformation_2.inject(rampUsersPerSec(AGG11_RPS_MIN) to (AGG11_RPS_MAX) during(60 seconds), constantUsersPerSec(AGG11_RPS_MAX) during(540 seconds)),
-    requestGetCareContacts_2.inject(rampUsersPerSec(AGG11_RPS_MIN) to (AGG11_RPS_MAX) during(60 seconds), constantUsersPerSec(AGG11_RPS_MAX) during(540 seconds)),
-    requestGetCareDocumentation_2.inject(rampUsersPerSec(AGG11_RPS_MIN) to (AGG11_RPS_MAX) during(60 seconds), constantUsersPerSec(AGG11_RPS_MAX) during(540 seconds)),
-    requestGetVaccinationHistory_2.inject(rampUsersPerSec(AGG11_RPS_MIN) to (AGG11_RPS_MAX) during(60 seconds), constantUsersPerSec(AGG11_RPS_MAX) during(540 seconds)),
-    requestGetFunctionalStatus_2.inject(rampUsersPerSec(AGG11_RPS_MIN) to (AGG11_RPS_MAX) during(60 seconds), constantUsersPerSec(AGG11_RPS_MAX) during(540 seconds)),
-    requestGetCarePlans_2.inject(rampUsersPerSec(1) to (3) during(60 seconds), constantUsersPerSec(3) during(540 seconds)))
+    requestGetDiagnosis_2.inject(
+        rampUsersPerSec(AGG11_RPS_MIN) to (AGG11_RPS_MAX) during(60 seconds), 
+        constantUsersPerSec(AGG11_RPS_MAX) during(540 seconds)),
+    requestGetMedicationHistory_2.inject(
+        rampUsersPerSec(AGG11_RPS_MIN) to (AGG11_RPS_MAX) during(60 seconds), 
+        constantUsersPerSec(AGG11_RPS_MAX) during(540 seconds)),
+    requestGetImagingOutcome_1.inject(
+        rampUsersPerSec(AGG11_RPS_MIN) to (AGG11_RPS_MAX) during(60 seconds), 
+        constantUsersPerSec(AGG11_RPS_MAX) during(540 seconds)),
+    requestGetLaboratoryOrderOutcome_3.inject(
+        rampUsersPerSec(AGG11_RPS_MIN) to (AGG11_RPS_MAX) during(60 seconds), 
+        constantUsersPerSec(AGG11_RPS_MAX) during(540 seconds)),
+    requestGetReferralOutcome_3.inject(
+        rampUsersPerSec(AGG11_RPS_MIN) to (AGG11_RPS_MAX) during(60 seconds), 
+        constantUsersPerSec(AGG11_RPS_MAX) during(540 seconds)),
+    requestGetAlertInformation_2.inject(
+        rampUsersPerSec(AGG11_RPS_MIN) to (AGG11_RPS_MAX) during(60 seconds), 
+        constantUsersPerSec(AGG11_RPS_MAX) during(540 seconds)),
+    requestGetCareContacts_2.inject(
+        rampUsersPerSec(AGG11_RPS_MIN) to (AGG11_RPS_MAX) during(60 seconds), 
+        constantUsersPerSec(AGG11_RPS_MAX) during(540 seconds)),
+    requestGetCareDocumentation_2.inject(
+        rampUsersPerSec(AGG11_RPS_MIN) to (AGG11_RPS_MAX) during(60 seconds), 
+        constantUsersPerSec(AGG11_RPS_MAX) during(540 seconds)),
+    requestGetVaccinationHistory_2.inject(
+        rampUsersPerSec(AGG11_RPS_MIN) to (AGG11_RPS_MAX) during(60 seconds), 
+        constantUsersPerSec(AGG11_RPS_MAX) during(540 seconds)),
+    requestGetFunctionalStatus_2.inject(
+        rampUsersPerSec(AGG11_RPS_MIN) to (AGG11_RPS_MAX) during(60 seconds), 
+        constantUsersPerSec(AGG11_RPS_MAX) during(540 seconds)),
+    requestGetCarePlans_2.inject(
+        rampUsersPerSec(AGG11_RPS_MIN) to (AGG11_RPS_MAX) during(60 seconds), 
+        constantUsersPerSec(AGG11_RPS_MAX) during(540 seconds)))
     .protocols(httpConf)  
     .assertions(
       global.successfulRequests.percent.gt(99),
