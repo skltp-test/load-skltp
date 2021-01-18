@@ -146,7 +146,7 @@ class RequestsNTjP extends Simulation {
 	constantUsersPerSec(UPDATE_RPS_MIN) during(55 seconds), 
 	constantUsersPerSec(UPDATE_RPS_MAX) during(5 seconds), 
 	constantUsersPerSec(UPDATE_RPS_MIN) during(55 seconds), 
-	constantUsersPerSec(UPDATE_RPS_MAX) during(5 seconds), 
+	constantUsersPerSec(UPDATE_RPS_MAX) during(5 seconds)), 
     requestVP004.inject(
         heavisideUsers(ERR3_REQ) during (600 seconds)),
     requestVP007.inject(
