@@ -4,7 +4,7 @@ import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import scala.concurrent.duration._
 
-class RequestsNTjP extends Simulation {
+class RequestsTrafikmixVariable extends Simulation {
 
         // Traffic will be routed toward LOAD-MOCKS based choosen personId
 	val feeder1 = csv("../user-files/data/ViaAGP.csv").circular
