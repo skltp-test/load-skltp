@@ -87,17 +87,39 @@ class RequestsBigdataDuration extends Simulation {
 
   // 1 minute ramp-up, variable length and rate
   setUp(
-    requestGetDiagnosis_2.inject(rampUsersPerSec(0) to (RPS_MAX) during(60 seconds), constantUsersPerSec(RPS_MAX) during(DURATION_MINUTES minutes)),
-    requestGetMedicationHistory_2.inject(rampUsersPerSec(0) to (RPS_MAX) during(60 seconds), constantUsersPerSec(RPS_MAX) during(DURATION_MINUTES minutes)),
-    requestGetImagingOutcome_1.inject(rampUsersPerSec(0) to (RPS_MAX) during(60 seconds), constantUsersPerSec(RPS_MAX) during(DURATION_MINUTES minutes)),
-    requestGetLaboratoryOrderOutcome_3.inject(rampUsersPerSec(0) to (RPS_MAX) during(60 seconds), constantUsersPerSec(RPS_MAX) during(DURATION_MINUTES minutes)),
-    requestGetReferralOutcome_3.inject(rampUsersPerSec(0) to (RPS_MAX) during(60 seconds), constantUsersPerSec(RPS_MAX) during(DURATION_MINUTES minutes)),
-    requestGetAlertInformation_2.inject(rampUsersPerSec(0) to (RPS_MAX) during(60 seconds), constantUsersPerSec(RPS_MAX) during(DURATION_MINUTES minutes)),
-    requestGetCareContacts_2.inject(rampUsersPerSec(0) to (RPS_MAX) during(60 seconds), constantUsersPerSec(RPS_MAX) during(DURATION_MINUTES minutes)),
-    requestGetCareDocumentation_2.inject(rampUsersPerSec(0) to (RPS_MAX) during(60 seconds), constantUsersPerSec(RPS_MAX) during(DURATION_MINUTES minutes)),
-    requestGetVaccinationHistory_2.inject(rampUsersPerSec(0) to (RPS_MAX) during(60 seconds), constantUsersPerSec(RPS_MAX) during(DURATION_MINUTES minutes)),
-    requestGetFunctionalStatus_2.inject(rampUsersPerSec(0) to (RPS_MAX) during(60 seconds), constantUsersPerSec(RPS_MAX) during(DURATION_MINUTES minutes)),
-    requestGetCarePlans_2.inject(rampUsersPerSec(0) to (RPS_MAX) during(60 seconds), constantUsersPerSec(RPS_MAX) during(DURATION_MINUTES minutes)))
+    requestGetDiagnosis_2.inject(
+       rampUsersPerSec(0) to (RPS_MAX) during(60 seconds), 
+       constantUsersPerSec(RPS_MAX) during(DURATION_MINUTES minutes)),
+    requestGetMedicationHistory_2.inject(
+       rampUsersPerSec(0) to (RPS_MAX) during(60 seconds), 
+       constantUsersPerSec(RPS_MAX) during(DURATION_MINUTES minutes)),
+    requestGetImagingOutcome_1.inject(
+       rampUsersPerSec(0) to (RPS_MAX) during(60 seconds), 
+       constantUsersPerSec(RPS_MAX) during(DURATION_MINUTES minutes)),
+    requestGetLaboratoryOrderOutcome_3.inject(
+       rampUsersPerSec(0) to (RPS_MAX) during(60 seconds), 
+       constantUsersPerSec(RPS_MAX) during(DURATION_MINUTES minutes)),
+    requestGetReferralOutcome_3.inject(
+       rampUsersPerSec(0) to (RPS_MAX) during(60 seconds), 
+       constantUsersPerSec(RPS_MAX) during(DURATION_MINUTES minutes)),
+    requestGetAlertInformation_2.inject(
+       rampUsersPerSec(0) to (RPS_MAX) during(60 seconds), 
+       constantUsersPerSec(RPS_MAX) during(DURATION_MINUTES minutes)),
+    requestGetCareContacts_2.inject(
+       rampUsersPerSec(0) to (RPS_MAX) during(60 seconds), 
+       constantUsersPerSec(RPS_MAX) during(DURATION_MINUTES minutes)),
+    requestGetCareDocumentation_2.inject(
+       rampUsersPerSec(0) to (RPS_MAX) during(60 seconds), 
+       constantUsersPerSec(RPS_MAX) during(DURATION_MINUTES minutes)),
+    requestGetVaccinationHistory_2.inject(
+       rampUsersPerSec(0) to (RPS_MAX) during(60 seconds), 
+       constantUsersPerSec(RPS_MAX) during(DURATION_MINUTES minutes)),
+    requestGetFunctionalStatus_2.inject(
+       rampUsersPerSec(0) to (RPS_MAX) during(60 seconds), 
+       constantUsersPerSec(RPS_MAX) during(DURATION_MINUTES minutes)),
+    requestGetCarePlans_2.inject(
+       rampUsersPerSec(0) to (RPS_MAX) during(60 seconds), 
+       constantUsersPerSec(RPS_MAX) during(DURATION_MINUTES minutes)))
     .protocols(httpConf)  
     .assertions(
       global.successfulRequests.percent.gt(99),
