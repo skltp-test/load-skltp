@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-16"?>
+<?xml version="1.0" encoding="utf-8"?>
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
     <soap:Header>
         <ns4:LogicalAddress xmlns:ns4="urn:riv:itintegration:registry:1" xmlns:ns3="urn:riv:clinicalprocess:healthcond:actoutcome:3.1" xmlns:ns2="urn:riv:clinicalprocess:healthcond:actoutcome:3" xmlns="urn:riv:clinicalprocess:healthcond:actoutcome:GetLaboratoryOrderOutcomeResponder:3">${logicalAddress}</ns4:LogicalAddress>
