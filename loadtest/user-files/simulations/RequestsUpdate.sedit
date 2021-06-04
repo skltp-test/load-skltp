@@ -20,21 +20,26 @@ class RequestsUpdate extends Simulation {
                 .body(ElFileBody("user-files/data/GetDiagnosis2.xml")).asXml
                 .check(status.is(200), responseTimeInMillis.lt(35000)))
 
+        val Update20 = exec(http("Update20")
+                .post("/Update/1/rivtabp21")
+                .body(ElFileBody("user-files/data/Update20_GCC.xml")).asXml
+                .check(status.is(200), responseTimeInMillis.lt(35000)))
 
         val Update1000 = exec(http("Update1000")
                 .post("/Update/1/rivtabp21")
                 .body(ElFileBody("user-files/data/Update1000_GD.xml")).asXml
-                        .check(status.is(200), responseTimeInMillis.lt(35000)))
+                .check(status.is(200), responseTimeInMillis.lt(35000)))
 
         val requestGetDiagnosis_2 = scenario("GetDiagnosis_2").feed(feeder1).exec(GetDiagnosis_2)
-        val requestUpdate1000 = scenario("Update1000").feed(feederUpdate).exec(Update1000)
+        val requestUpdate20 = scenario("Update20").feed(feederUpdate).exec(Update20).pause(10,30)
+        val requestUpdate1000 = scenario("Update1000").feed(feederUpdate).exec(Update1000).pause(5)
 
-
-  // Simulate NPÖ that requests patient data once per second
-  // NOTE: Injections are run in parallell, stepts within an injection are sequencial
+  // Simulera grundladdning med 1000 poster/anrop, 5 sek paus mellan
+  // + Mindre Update-anrop med 10-30 sek paus mellan
+  // + Trafik via AgP, 1 anrop/s
   setUp(
-    requestUpdate1000.inject(
-	heavisideUsers(40) during (20 minutes)), 
+    requestUpdate1000.inject(constantConcurrentUsers(1) during (20 minutes)), 
+    requestUpdate20.inject(constantConcurrentUsers(1) during (20 minutes)), 
     requestGetDiagnosis_2.inject(constantUsersPerSec(1) during(20 minutes)))
     .protocols(httpConf)  
     .assertions(
