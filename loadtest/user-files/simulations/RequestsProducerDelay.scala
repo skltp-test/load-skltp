@@ -12,7 +12,7 @@ class RequestsProducerDelay extends Simulation {
         // Traffic will be routed toward LOAD-MOCKS based choosen personId
 	val feeder2 = csv("../user-files/data/ProducerDelay.csv").circular
 	val httpConf = http
-		.baseUrl(targetHost)
+		.baseUrl(s"https://$targetHost/vp")
 		.acceptEncodingHeader("gzip, deflate")
 		.userAgentHeader("SKLTP load tests")
 
