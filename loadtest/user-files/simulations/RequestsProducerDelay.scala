@@ -5,12 +5,14 @@ import io.gatling.http.Predef._
 import scala.concurrent.duration._
 
 class RequestsProducerDelay extends Simulation {
+        // Input paramters
+        val targetHost = sys.env("TARGETHOST")
+        val rps = sys.env("RPS").toInt
 
         // Traffic will be routed toward LOAD-MOCKS based choosen personId
 	val feeder2 = csv("../user-files/data/ProducerDelay.csv").circular
-	//sys.env("ENDPOINT")
 	val httpConf = http
-		.baseUrl("https://dev.esb.ntjp.se/vp")
+		.baseUrl(targetHost)
 		.acceptEncodingHeader("gzip, deflate")
 		.userAgentHeader("SKLTP load tests")
 
@@ -25,7 +27,7 @@ class RequestsProducerDelay extends Simulation {
 
   setUp(
     requestDirektadresserad.inject(
-	constantUsersPerSec(5) during(300 seconds))) 
+	constantUsersPerSec(rps) during(300 seconds))) 
     .protocols(httpConf)
     .assertions(
       global.successfulRequests.percent.gt(99),
