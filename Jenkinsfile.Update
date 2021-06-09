@@ -4,7 +4,7 @@ pipeline {
     parameters {
         string(name: 'RPS', defaultValue: '1', description: 'AgP Requests Per Second')
         string(name: 'UPDATE20_USERS', defaultValue: '3', description: 'Concurrent Update20 users')
-        string(name: 'UPDATE1000_USERS', defaultValue: '5', description: 'Seconds to pause between Update1000 requests')
+        string(name: 'UPDATE1000_PAUSE', defaultValue: '5', description: 'Seconds to pause between Update1000 requests')
     }
     stages {
         stage('Load testing') {
