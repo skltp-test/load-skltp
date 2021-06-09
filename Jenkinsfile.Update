@@ -1,7 +1,11 @@
 pipeline {
 
-    agent any
-
+    agent { label 'docker' }
+    parameters {
+        string(name: 'RPS', defaultValue: '1', description: 'AgP Requests Per Second')
+        string(name: 'UPDATE20_USERS', defaultValue: '3', description: 'Concurrent Update20 users')
+        string(name: 'UPDATE1000_USERS', defaultValue: '5', description: 'Seconds to pause between Update1000 requests')
+    }
     stages {
         stage('Load testing') {
             steps {
@@ -21,7 +25,6 @@ pipeline {
                         sed -e 's@KEYSTOREVARIABLE@'"cert.p12"'@; s@KEYSTOREPASSWORD@'"${CERTKEYPWD}"'@' ./conf/gatling.sedit > ./conf/gatling.conf
                         sed -i -e 's@TRUSTSTOREVARIABLE@'"truststore.p12"'@; s@TRUSTSTOREPASSWORD@'"banan69"'@' ./conf/gatling.conf
                         sed -e 's@SIMULATION@'"RequestsUpdate"'@' ./user-files/chown-files.sedit > ./user-files/chown-files.sh
-                        sed -e 's@TARGETHOST@'"${TARGETHOST}"'@' ./user-files/simulations/RequestsUpdate.sedit > ./user-files/simulations/RequestsUpdate.scala
                         docker-compose run --rm testsuite
                     """
                 }}

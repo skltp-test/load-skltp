@@ -9,6 +9,8 @@ services:
       # Variabler som skickas vidare till containern
       - TARGETHOST
       - RPS
+      - UPDATE20_USERS
+      - UPDATE1000_PAUSE
     volumes:
       - ./conf:/opt/gatling/conf
       - ./user-files:/opt/gatling/user-files
