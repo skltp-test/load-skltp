@@ -5,12 +5,16 @@ import io.gatling.http.Predef._
 import scala.concurrent.duration._
 
 class RequestsVP extends Simulation {
+        // Input paramters
+        val targetHost = sys.env("TARGETHOST")
+        val rps = sys.env("RPS").toInt
+        var durationMinutes = sys.env("DURATION_MINUTES").toInt
 
         // Traffic will be routed toward LOAD-MOCKS based choosen personId
 	val feeder2 = csv("../user-files/data/Direktadresserad.csv").circular
 	
 	val httpConf = http
-		.baseUrl("https://qa.esb.ntjp.se/vp")
+		.baseUrl(s"https://$targetHost/vp")
 		.acceptEncodingHeader("gzip, deflate")
 		.userAgentHeader("SKLTP load tests")
 
@@ -25,7 +29,7 @@ class RequestsVP extends Simulation {
 
   setUp(
     requestDirektadresserad.inject(
-	constantUsersPerSec(70) during(600 seconds))) 
+	constantUsersPerSec(rps) during(durationMinutes minutes))) 
     .protocols(httpConf)
     .assertions(
       global.successfulRequests.percent.gt(99),

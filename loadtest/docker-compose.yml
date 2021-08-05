@@ -11,6 +11,7 @@ services:
       - RPS
       - UPDATE20_USERS
       - UPDATE1000_PAUSE
+      - DURATION_MINUTES
     volumes:
       - ./conf:/opt/gatling/conf
       - ./user-files:/opt/gatling/user-files
