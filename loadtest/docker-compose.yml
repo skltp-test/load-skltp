@@ -8,6 +8,7 @@ services:
     environment:
       # Variabler som skickas vidare till containern
       - TARGETHOST
+      - RPS
       - DIRECT_RPS
       - UPDATE20_USERS
       - UPDATE1000_PAUSE
