@@ -130,7 +130,7 @@ class RequestsTrafikmixVariable extends Simulation {
     requestDirektadresserad.inject(
 	constantUsersPerSec(directRps) during(durationMinutes minutes)), 
     requestUpdate20.inject(
-        (1 to durationMinutes).map(i => Seq(constantUsersPerSec(updateRpsMin) during(55 seconds), constantUsersPerSec(updateRpsMax) during(5 seconds)))),
+        (1 to durationMinutes).flatMap(i => Seq(constantUsersPerSec(updateRpsMin) during(55 seconds), constantUsersPerSec(updateRpsMax) during(5 seconds)))),
     requestVP004.inject(
         heavisideUsers(errorReqs) during (durationMinutes minutes)),
     requestVP007.inject(
