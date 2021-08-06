@@ -2,13 +2,12 @@ pipeline {
 
     agent { label 'docker' }
     parameters {
-        string(name: 'TARGETHOST', defaultValue: 'dev.esb.ntjp.se', description: 'Test target')
-        string(name: 'SOURCESYSTEMHSA', defaultValue: 'LOAD-MOCKS', description: 'Mock environment')
-        string(name: 'AGG11_RPS_MIN', defaultValue: '1', description: 'Aggregating services (11x) RequestsPerSecond min')
-        string(name: 'AGG11_RPS_MAX', defaultValue: '3', description: 'Aggregating services (11x) RequestsPerSecond max')
+        string(name: 'DURATION_MINUTES', defaultValue: '10', description: 'Duration in minutes')
+        string(name: 'DIRECT_RPS', defaultValue: '1', description: 'Direct Requests Per Second')
+        string(name: 'AGG10_RPS_MIN', defaultValue: '1', description: 'Aggregating services (10x) RequestsPerSecond min')
+        string(name: 'AGG10_RPS_MAX', defaultValue: '3', description: 'Aggregating services (10x) RequestsPerSecond max')
         string(name: 'UPDATE_RPS_MIN', defaultValue: '3', description: 'EI Update RequestsPerSecond min')
         string(name: 'UPDATE_RPS_MAX', defaultValue: '15', description: 'EI Update RequestsPerSecond max')
-        string(name: 'DIRECT_RPS', defaultValue: '1', description: 'Direct RequestsPerSecond')
         string(name: 'ERR3_REQ', defaultValue: '5', description: 'ErrorResponse (3x) Requests')
     }
 
@@ -31,11 +30,6 @@ pipeline {
                         sed -e 's@KEYSTOREVARIABLE@'"cert.p12"'@; s@KEYSTOREPASSWORD@'"${CERTKEYPWD}"'@' ./conf/gatling.sedit > ./conf/gatling.conf
                         sed -i -e 's@TRUSTSTOREVARIABLE@'"truststore.p12"'@; s@TRUSTSTOREPASSWORD@'"banan69"'@' ./conf/gatling.conf
                         sed -e 's@SIMULATION@'"RequestsTrafikmixVariable"'@' ./user-files/chown-files.sedit > ./user-files/chown-files.sh
-                        sed -e 's@TARGETHOST@'"${TARGETHOST}"'@' ./user-files/simulations/RequestsTrafikmixVariable.sedit > ./user-files/simulations/RequestsTrafikmixVariable.scala
-                        sed -i -e 's@DIRECT_RPS@'"${DIRECT_RPS}"'@; s@ERR3_REQ@'"${ERR3_REQ}"'@' ./user-files/simulations/RequestsTrafikmixVariable.scala
-                        sed -i -e 's@UPDATE_RPS_MIN@'"${UPDATE_RPS_MIN}"'@; s@UPDATE_RPS_MAX@'"${UPDATE_RPS_MAX}"'@' ./user-files/simulations/RequestsTrafikmixVariable.scala
-                        sed -i -e 's@AGG11_RPS_MIN@'"${AGG11_RPS_MIN}"'@; s@AGG11_RPS_MAX@'"${AGG11_RPS_MAX}"'@' ./user-files/simulations/RequestsTrafikmixVariable.scala
-                        cat user-files/simulations/RequestsTrafikmixVariable.scala
                         docker-compose run --rm testsuite
                     """
                 }}

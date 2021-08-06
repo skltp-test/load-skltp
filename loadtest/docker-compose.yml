@@ -8,10 +8,16 @@ services:
     environment:
       # Variabler som skickas vidare till containern
       - TARGETHOST
-      - RPS
+      - DIRECT_RPS
       - UPDATE20_USERS
       - UPDATE1000_PAUSE
       - DURATION_MINUTES
+      - AGG10_RPS_MIN
+      - AGG10_RPS_MAX
+      - UPDATE_RPS_MIN
+      - UPDATE_RPS_MAX
+      - ERR3_REQ
+
     volumes:
       - ./conf:/opt/gatling/conf
       - ./user-files:/opt/gatling/user-files
