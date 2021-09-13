@@ -46,11 +46,6 @@ pipeline {
                         """
                         stash name: "results", includes: "loadtest/results/*"
                     }
-                    post {
-                        always {
-                            //TODO
-                        }
-                    }
 
                 //}
 
