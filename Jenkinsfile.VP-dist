@@ -42,9 +42,8 @@ pipeline {
                         docker-compose run --rm --entrypoint /opt/gatling/user-files/run-test-dist.sh testsuite SKLTP.RequestsVP
                         cd results
                         ls -la
-                        mv simulation.log simlation-slave2.log
                         """
-                        stash name: "results", includes: "loadtest/results/*"
+                        stash name: "results2", includes: "loadtest/results/**/simulation.log"
                     }
 
                 //}
@@ -54,8 +53,10 @@ pipeline {
         stage('Results') {
             agent { label 'slave1' }
             steps {
-                unstash "results"
-                sh """cd loadtest
+                unstash "results2"
+                sh """
+                cd loadtest
+                ls -la
                 docker-compose run --rm --entrypoint /opt/gatling/user-files/report.sh testsuite
                 """
                 gatlingArchive()
