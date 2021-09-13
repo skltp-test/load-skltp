@@ -77,15 +77,12 @@ pipeline {
                 unstash "results2"
                 sh """
                 cd loadtest/results
-                mkdir all
-                mv *.log all/
-                ls -la
+                mkdir RequestsVP-all
+                mv *.log RequestsVP-all/
                 cd ..
-                docker-compose run --rm --entrypoint /opt/gatling/user-files/report.sh testsuite
+                docker-compose run --rm --entrypoint /opt/gatling/user-files/report.sh testsuite RequestsVP-all
                 """
-                dir ("loadtest/results/all") {
-                    gatlingArchive()
-                }
+                gatlingArchive()
             }
             post {
                 always {

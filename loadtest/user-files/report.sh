@@ -14,7 +14,7 @@ chown -R $DIR_OWNER $DIR
 # Run Load test (mute cli questions)
 #------------------------------------
 
-gatling.sh -ro all
+gatling.sh -ro $1
 
 # results folder has a new directory
 chown -R $DIR_OWNER $DIR/../results
