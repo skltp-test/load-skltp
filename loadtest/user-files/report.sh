@@ -4,7 +4,7 @@
 # Run Load test (mute cli questions)
 #------------------------------------
 
-gatling.sh -ro reports
+gatling.sh -ro all
 
 
 #------------------------------------
