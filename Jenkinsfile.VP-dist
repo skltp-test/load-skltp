@@ -29,8 +29,27 @@ pipeline {
             }
         }
         stage('Load testing') {
-            //parallel {
-                //stage('Test On slave2') {
+            parallel {
+                stage('Test On slave1') {
+                    agent {
+                        label "slave1"
+                    }
+                    steps {
+                        unstash "conf"
+                        sh """
+                        #! /bin/bash
+                        cd loadtest
+                        rm -rf results/*
+                        docker-compose run --rm --entrypoint /opt/gatling/user-files/run-test-dist.sh testsuite SKLTP.RequestsVP
+                        cd results
+                        find . -name simulation.log -exec cp '{}' 'simulation-node1.log' ';'
+                        ls -la
+                        """
+                        stash name: "results1", includes: "loadtest/results/simulation-node1.log"
+                    }
+
+                }
+                stage('Test On slave2') {
                     agent {
                         label "slave2"
                     }
@@ -42,27 +61,31 @@ pipeline {
                         rm -rf results/*
                         docker-compose run --rm --entrypoint /opt/gatling/user-files/run-test-dist.sh testsuite SKLTP.RequestsVP
                         cd results
-                        mkdir all
-                        find . -name simulation.log -exec cp '{}' 'all/simulation-node2.log' ';'
+                        find . -name simulation.log -exec cp '{}' 'simulation-node2.log' ';'
                         ls -la
                         """
-                        stash name: "results2", includes: "loadtest/results/all/*"
+                        stash name: "results2", includes: "loadtest/results/simulation-node2.log"
                     }
+                }
 
-                //}
-
-            //}
+            }
         }
         stage('Results') {
             agent { label 'slave1' }
             steps {
+                unstash "results1"
                 unstash "results2"
                 sh """
-                cd loadtest
+                cd loadtest/results
+                mkdir all
+                mv *.log all/
                 ls -la
+                cd ..
                 docker-compose run --rm --entrypoint /opt/gatling/user-files/report.sh testsuite
                 """
-                gatlingArchive()
+                dir ("loadtest/results/all") {
+                    gatlingArchive()
+                }
             }
             post {
                 always {
