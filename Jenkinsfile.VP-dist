@@ -24,7 +24,7 @@ pipeline {
                         sed -e 's@KEYSTOREVARIABLE@'"cert.p12"'@; s@KEYSTOREPASSWORD@'"${CERTKEYPWD}"'@' ./conf/gatling.sedit > ./conf/gatling.conf
                         sed -i -e 's@TRUSTSTOREVARIABLE@'"truststore.p12"'@; s@TRUSTSTOREPASSWORD@'"banan69"'@' ./conf/gatling.conf
                     """
-                    stash name "conf", includes "loadtest/conf/*"
+                    stash name: "conf", includes: "loadtest/conf/*"
                 }}
             }
         }
@@ -44,7 +44,7 @@ pipeline {
                         ls -la
                         mv simulation.log simlation-slave2.log
                         """
-                        stash name "results", includes "loadtest/results/*"
+                        stash name: "results", includes: "loadtest/results/*"
                     }
                     post {
                         always {
