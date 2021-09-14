@@ -4,7 +4,7 @@ import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import scala.concurrent.duration._
 
-class RequestsTrafikmixVariable extends Simulation {
+class RequestsTrafikmixDist1 extends Simulation {
     // Input paramters
     val targetHost = sys.env("TARGETHOST")
     val durationMinutes = sys.env("DURATION_MINUTES").toInt
