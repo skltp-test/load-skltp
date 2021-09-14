@@ -175,7 +175,7 @@ class RequestsTrafikmixVariable extends Simulation {
         details("GetMedicationHistory_2").successfulRequests.percent.is(100),
         details("GetImagingOutcome_1").successfulRequests.percent.is(100), 
         details("GetLaboratoryOrderOutcome_3").successfulRequests.percent.is(100), 
-        details("GetAlertInformation_2").successfulRequests.percent.is(100), 
+        details("GetAlertInformation_2").successfulRequests.percent.is(100))
         //details("GetCareContacts_2").successfulRequests.percent.is(100), 
         //details("GetCareDocumentation_2").successfulRequests.percent.is(100), 
         //details("GetVaccinationHistory_2").successfulRequests.percent.is(100), 
