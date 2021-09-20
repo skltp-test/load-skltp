@@ -44,7 +44,6 @@ pipeline {
                         sh """
                         #! /bin/bash
                         cd loadtest
-                        rm -rf results/*
                         docker-compose run --rm --entrypoint /opt/gatling/user-files/run-test-dist.sh testsuite SKLTP.RequestsTrafikmixDist1
                         cd results
                         find . -name simulation.log -exec cp '{}' 'simulation-node1.log' ';'
@@ -63,7 +62,6 @@ pipeline {
                         sh """
                         #! /bin/bash
                         cd loadtest
-                        rm -rf results/*
                         docker-compose run --rm --entrypoint /opt/gatling/user-files/run-test-dist.sh testsuite SKLTP.RequestsTrafikmixDist2
                         cd results
                         find . -name simulation.log -exec cp '{}' 'simulation-node2.log' ';'
