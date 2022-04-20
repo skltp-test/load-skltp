@@ -13,6 +13,7 @@ chown -R $DIR_OWNER $DIR
 #------------------------------------
 # Run Load test (mute cli questions)
 #------------------------------------
+rm -rf $DIR/../results/*
 gatling.sh -s SKLTP.SIMULATION
 
 # results folder has a new directory
