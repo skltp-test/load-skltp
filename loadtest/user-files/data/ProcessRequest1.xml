@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Header>
+        <ns3:LogicalAddress xmlns:ns4="urn:riv:clinicalprocess:activity:request:ProcessRequestResponder:1" xmlns:ns3="urn:riv:itintegration:registry:1" xmlns:ns2="urn:riv:clinicalprocess:activity:description:2" xmlns="urn:riv:clinicalprocess:activity:request:ProcessRequestResponder:1">${logicalAddress}</ns3:LogicalAddress>
+    </soap:Header>
+    <soap:Body>
+        <ProcessRequest xmlns="urn:riv:clinicalprocess:activity:request:ProcessRequestResponder:1" xmlns:ns2="urn:riv:clinicalprocess:activity:description:2" xmlns:ns3="urn:riv:itintegration:registry:1" xmlns:ns4="urn:riv:clinicalprocess:activity:description:2.1">
+            <patientId>
+                <ns2:id>${patientId1}</ns2:id>
+                <ns2:type>1.2.752.129.2.1.3.1</ns2:type>
+            </patientId>
+            <anyTag>
+                <anyValue>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</anyValue>
+            </anyTag>
+        </ProcessRequest>
+    </soap:Body>
+</soap:Envelope>
