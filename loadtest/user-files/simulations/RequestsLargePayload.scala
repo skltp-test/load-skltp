@@ -17,13 +17,13 @@ class RequestsLargePayload extends Simulation {
 		.baseUrl(s"https://$targetHost/vp")
 		.acceptEncodingHeader("gzip, deflate")
 		.userAgentHeader("SKLTP load tests")
-           val ProcessRequest = exec(http("ProcessRequest")
+           val ProcessRequest1 = exec(http("ProcessRequest1")
                 .post("/clinicalprocess/activity/request/ProcessRequestResponder/1/rivtabp21")
                 .body(ElFileBody("user-files/data/ProcessRequest1.xml")).asXml
                         .check(status.is(200), responseTimeInMillis.lt(35000)))
 
         // Direktadresserad trafik
-        val requestProcessRequest = scenario("ProcessRequest").feed(feeder2).exec(ProcessRequest)
+        val requestProcessRequest = scenario("ProcessRequest1").feed(feeder2).exec(ProcessRequest1)
 
 
   setUp(
@@ -32,6 +32,6 @@ class RequestsLargePayload extends Simulation {
     .protocols(httpConf)
     .assertions(
       global.successfulRequests.percent.gt(99),
-      details("ProcessRequest").successfulRequests.percent.is(100))
+      details("ProcessRequest1").successfulRequests.percent.is(100))
   
 }
