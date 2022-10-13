@@ -3,8 +3,8 @@ pipeline {
     agent { label 'docker' }
     parameters {
         string(name: 'TARGETHOST', defaultValue: 'dev.esb.ntjp.se', description: 'Test target')
-        string(name: 'RPS', defaultValue: '50', description: 'Direct Requests Per Second')
-        string(name: 'DURATION_MINUTES', defaultValue: '10', description: 'Duration in minutes')
+        string(name: 'RPS', defaultValue: '1', description: 'Direct Requests Per Second')
+        string(name: 'DURATION_MINUTES', defaultValue: '1', description: 'Duration in minutes')
     }
     stages {
         stage('Load testing') {

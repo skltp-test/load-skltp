@@ -5,12 +5,8 @@
     </soap:Header>
     <soap:Body>
         <ProcessRequest xmlns="urn:riv:clinicalprocess:activity:request:ProcessRequestResponder:1" xmlns:ns2="urn:riv:clinicalprocess:activity:description:2" xmlns:ns3="urn:riv:itintegration:registry:1" xmlns:ns4="urn:riv:clinicalprocess:activity:description:2.1">
-            <patientId>
-                <ns2:id>${patientId1}</ns2:id>
-                <ns2:type>1.2.752.129.2.1.3.1</ns2:type>
-            </patientId>
             <anyTag>
-                <anyValue>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</anyValue>
+                <anyValue>MuchData</anyValue>
             </anyTag>
         </ProcessRequest>
     </soap:Body>
