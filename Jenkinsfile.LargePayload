@@ -21,8 +21,8 @@ pipeline {
                         csplit -z -f ./conf/trust- $TRUST_PEM '/-----END CERTIFICATE-----/+1' '{*}' 
                         ls ./conf/trust-*| xargs -I{} keytool -importcert -storetype PKCS12 -keystore ./conf/truststore.p12 -storepass banan69 -file {} -alias {} -noprompt
 
-                        base64 < ./user-files/${ATTACHMENT_SIZE} > ./user-files/base64.txt
-                        sed -e '/PAYLOAD_DATA/ r ./user-files/base64.txt' -e '/PAYLOAD_DATA/d' ./user-files/ProcessRequest1.sedit > ./user-files/ProcessRequest1.xml
+                        base64 < ./user-files/data/${ATTACHMENT_SIZE} > ./user-files/data/base64.txt
+                        sed -e '/PAYLOAD_DATA/ r ./user-files/data/base64.txt' -e '/PAYLOAD_DATA/d' ./user-files/ProcessRequest1.sedit > ./user-files/ProcessRequest1.xml
 
                         cat ${CERTKEY} > ./conf/cert.p12
                         ls -l ./conf/cert.p12
