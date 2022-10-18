@@ -1,13 +1,42 @@
-<?xml version="1.0" encoding="utf-8"?>
-<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-    <soap:Header>
-        <ns3:LogicalAddress xmlns:ns4="urn:riv:clinicalprocess:activity:request:ProcessRequestResponder:1" xmlns:ns3="urn:riv:itintegration:registry:1" xmlns:ns2="urn:riv:clinicalprocess:activity:description:2" xmlns="urn:riv:clinicalprocess:activity:request:ProcessRequestResponder:1">${logicalAddress}</ns3:LogicalAddress>
-    </soap:Header>
-    <soap:Body>
-        <ProcessRequest xmlns="urn:riv:clinicalprocess:activity:request:ProcessRequestResponder:1" xmlns:ns2="urn:riv:clinicalprocess:activity:description:2" xmlns:ns3="urn:riv:itintegration:registry:1" xmlns:ns4="urn:riv:clinicalprocess:activity:description:2.1">
-            <anyTag>
-                <anyValue>MuchData</anyValue>
-            </anyTag>
-        </ProcessRequest>
-    </soap:Body>
-</soap:Envelope>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:riv:itintegration:registry:1" xmlns:urn1="urn:riv:clinicalprocess:activity:request:ProcessRequestResponder:1" xmlns:urn2="urn:riv:clinicalprocess:activity:request:1">
+    <soapenv:Header>
+        <urn:LogicalAddress>${logicalAddress}</urn:LogicalAddress>
+    </soapenv:Header>
+    <soapenv:Body>
+        <urn1:ProcessRequest>
+            <urn2:request>
+                <urn2:requestId extension="asd#123"/>
+                <urn2:typeOfRequest code="4"/>
+                <urn2:versionTimeStamp value="20181031100101"/>
+                <urn2:versionNumber>10001</urn2:versionNumber>
+                <urn2:reasonForVersion>
+                    <urn2:typeOfReason code="NR"/>
+                </urn2:reasonForVersion>
+                <urn2:patient>
+                    <urn2:personId extension="195709263080" root="1.2.752.129.2.1.3.1"/>
+                </urn2:patient>
+                <urn2:requestOrganisation>
+                    <urn2:careUnitId extension="careUnitId4567"/>
+                </urn2:requestOrganisation>
+                <urn2:author>
+                    <urn2:date value="20181101"/>
+                    <urn2:healthcareProfessionalOrganisation>
+                        <urn2:careUnitId extension="careUnit12345"/>
+                    </urn2:healthcareProfessionalOrganisation>
+                </urn2:author>
+                <urn2:recipient>
+                    <urn2:organisation>
+                        <urn2:careUnitId extension="careUnitId"/>
+                    </urn2:organisation>
+                </urn2:recipient>
+                <urn2:additionalInformation/>
+                <urn2:questionFormulation>
+                    <urn2:text>Question Formulation text</urn2:text>
+                </urn2:questionFormulation>
+                <urn2:attachment>
+                    PAYLOAD_DATA
+                </urn2:attachment>
+            </urn2:request>
+        </urn1:ProcessRequest>
+    </soapenv:Body>
+</soapenv:Envelope>
