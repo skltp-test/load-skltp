@@ -1,10 +1,8 @@
 package SKLTP
 
-import java.io.File
-import java.util.Base64
-import io.gatling.core.Predef.*
-import io.gatling.http.Predef.*
-import scala.concurrent.duration.*
+import io.gatling.core.Predef._
+import io.gatling.http.Predef._
+import scala.concurrent.duration._
 
 class RequestsLargePayload extends Simulation {
     // Input paramters
