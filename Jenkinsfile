@@ -22,7 +22,7 @@ pipeline {
                         sed -i -e 's@TRUSTSTOREVARIABLE@'"truststore.p12"'@; s@TRUSTSTOREPASSWORD@'"banan69"'@' ./conf/gatling.conf
                         sed -e 's@SIMULATION@'"RequestsNTjP"'@' ./user-files/chown-files.sedit > ./user-files/chown-files.sh
                         sed -e 's@TARGETHOST@'"${TARGETHOST}"'@' ./user-files/simulations/RequestsNTjP.sedit > ./user-files/simulations/RequestsNTjP.scala
-                        docker-compose run --rm testsuite
+                        docker compose run --rm testsuite
                     """
                 }}
                 gatlingArchive()

@@ -33,7 +33,7 @@ pipeline {
                         sed -e 's@SIMULATION@'"RequestsPatientInfoApSe"'@' ./user-files/chown-files.sedit > ./user-files/chown-files.sh
 
                         # Kör test i Docker
-                        docker-compose run --rm testsuite
+                        docker compose run --rm testsuite
                     """
                 }}
                 gatlingArchive()

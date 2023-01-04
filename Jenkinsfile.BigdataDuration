@@ -30,7 +30,7 @@ pipeline {
                         sed -e 's@TARGETHOST@'"${TARGETHOST}"'@' ./user-files/simulations/RequestsBigdataDuration.sedit > ./user-files/simulations/RequestsBigdataDuration.scala
                         sed -i -e 's@RPS_MAX@'"${RPS_MAX}"'@; s@DURATION_MINUTES@'"${DURATION_MINUTES}"'@' ./user-files/simulations/RequestsBigdataDuration.scala
                         cat user-files/simulations/RequestsBigdataDuration.scala
-                        docker-compose run --rm testsuite
+                        docker compose run --rm testsuite
                     """
                 }}
                 gatlingArchive()
