@@ -39,7 +39,7 @@ pipeline {
                         sh """
                         #! /bin/bash
                         cd loadtest
-                        docker-compose run --rm --entrypoint /opt/gatling/user-files/run-test-dist.sh testsuite SKLTP.RequestsVP
+                        docker compose run --rm --entrypoint /opt/gatling/user-files/run-test-dist.sh testsuite SKLTP.RequestsVP
                         cd results
                         find . -name simulation.log -exec cp '{}' 'simulation-node1.log' ';'
                         ls -la
@@ -57,7 +57,7 @@ pipeline {
                         sh """
                         #! /bin/bash
                         cd loadtest
-                        docker-compose run --rm --entrypoint /opt/gatling/user-files/run-test-dist.sh testsuite SKLTP.RequestsVP
+                        docker compose run --rm --entrypoint /opt/gatling/user-files/run-test-dist.sh testsuite SKLTP.RequestsVP
                         cd results
                         find . -name simulation.log -exec cp '{}' 'simulation-node2.log' ';'
                         ls -la
@@ -78,7 +78,7 @@ pipeline {
                 mkdir RequestsVP-all
                 mv *.log RequestsVP-all/
                 cd ..
-                docker-compose run --rm --entrypoint /opt/gatling/user-files/report.sh testsuite RequestsVP-all
+                docker compose run --rm --entrypoint /opt/gatling/user-files/report.sh testsuite RequestsVP-all
                 """
                 gatlingArchive()
             }

@@ -29,7 +29,7 @@ services:
     # bash är inte istallerat i containern, så måste explict köra sh
     entrypoint: ["sh", "/opt/gatling/bin/recorder.sh"]
     # För exempelkommandon:
-    # docker-compose run --rm recorder --help
+    # docker compose run --rm recorder --help
     command: -cli true -lp 8000
     ports:
       - "8000:8000"
