@@ -6,7 +6,7 @@ pipeline {
     }
     stages {
         stage('Setup') {
-            agent { label 'slave1' }
+            agent { label 'agent1' }
             steps {
                 configFileProvider([configFile(fileId: '267423b6-76ad-4e54-a7c2-222fafbf7fb9', variable: 'TRUST_PEM')]) {
                 withCredentials([certificate(credentialsId: 'TSTNMT2321000156-B02', keystoreVariable: 'CERTKEY', passwordVariable: 'CERTKEYPWD')]) {
@@ -17,7 +17,7 @@ pipeline {
 
                         rm -fr ./conf/truststore.p12
                         csplit -z -f ./conf/trust- $TRUST_PEM '/-----END CERTIFICATE-----/+1' '{*}' 
-                        ls ./conf/trust-*| xargs -I{} keytool -importcert -storetype PKCS12 -keystore ./conf/truststore.p12 -storepass banan69 -file {} -alias {} -noprompt
+                        ls ./conf/trust-*| xargs -I{} keytool -J-Dkeystore.pkcs12.legacy -importcert -storetype PKCS12 -keystore ./conf/truststore.p12 -storepass banan69 -file {} -alias {} -noprompt
 
                         cat ${CERTKEY} > ./conf/cert.p12
                         ls -l ./conf/cert.p12
@@ -30,9 +30,9 @@ pipeline {
         }
         stage('Load testing') {
             parallel {
-                stage('Test On slave1') {
+                stage('Test On agent1') {
                     agent {
-                        label "slave1"
+                        label "agent1"
                     }
                     steps {
                         unstash "conf"
@@ -48,9 +48,9 @@ pipeline {
                     }
 
                 }
-                stage('Test On slave2') {
+                stage('Test On agent2') {
                     agent {
-                        label "slave2"
+                        label "agent2"
                     }
                     steps {
                         unstash "conf"
@@ -69,7 +69,7 @@ pipeline {
             }
         }
         stage('Results') {
-            agent { label 'slave1' }
+            agent { label 'agent1' }
             steps {
                 unstash "results1"
                 unstash "results2"

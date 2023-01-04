@@ -18,7 +18,7 @@ pipeline {
                         # Uppdatera certfiler
                         rm -fr ./conf/truststore.p12
                         csplit -z -f ./conf/trust- $TRUST_PEM '/-----END CERTIFICATE-----/+1' '{*}' 
-                        ls ./conf/trust-*| xargs -I{} keytool -importcert -storetype PKCS12 -keystore ./conf/truststore.p12 -storepass banan69 -file {} -alias {} -noprompt
+                        ls ./conf/trust-*| xargs -I{} keytool -J-Dkeystore.pkcs12.legacy -importcert -storetype PKCS12 -keystore ./conf/truststore.p12 -storepass banan69 -file {} -alias {} -noprompt
 
                         # Certinfo till gatling.conf
                         cat ${CERTKEY} > ./conf/cert.p12
