@@ -1,7 +1,7 @@
 version: '3'
 services:
   testsuite:
-    image: "denvazh/gatling:3.0.3"
+    image: "denvazh/gatling:3.2.1"
     command: -m
     #stdin_open: true
     #tty: true
