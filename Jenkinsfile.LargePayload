@@ -29,7 +29,7 @@ pipeline {
                         sed -e 's@KEYSTOREVARIABLE@'"cert.p12"'@; s@KEYSTOREPASSWORD@'"${CERTKEYPWD}"'@' ./conf/gatling.sedit > ./conf/gatling.conf
                         sed -i -e 's@TRUSTSTOREVARIABLE@'"truststore.p12"'@; s@TRUSTSTOREPASSWORD@'"banan69"'@' ./conf/gatling.conf
                         sed -e 's@SIMULATION@'"RequestsLargePayload"'@' ./user-files/chown-files.sedit > ./user-files/chown-files.sh
-                        docker-compose run --rm testsuite
+                        docker compose run --rm testsuite
                     """
                 }}
                 gatlingArchive()
