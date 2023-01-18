@@ -5,7 +5,7 @@ pipeline {
         string(name: 'TARGETHOST', defaultValue: 'dev.esb.ntjp.se', description: 'Test target')
         string(name: 'RPS', defaultValue: '1', description: 'Direct Requests Per Second')
         string(name: 'DURATION_MINUTES', defaultValue: '1', description: 'Duration in minutes')
-        choice(name: 'ATTACHMENT_SIZE', , choices: ['fiveMB.img', 'fifteenMB.img', 'fiftyMB.img'], description: 'The size of the attachment to send.')
+        choice(name: 'ATTACHMENT_SIZE', , choices: ['fiveMB.img', 'tenMB.img', 'twentyMB.img', 'fiftyMB.img'], description: 'The size of the attachment to send.')
     }
     stages {
         stage('Load testing') {
