@@ -2,6 +2,13 @@ version: '3'
 services:
   testsuite:
     image: "denvazh/gatling:3.0.3"
+    deploy:
+      replicas: 4
+      placement:
+        max_replicas_per_node: 1
+      update_config:
+        parallelism: 2
+        delay: 10s
     command: -m
     #stdin_open: true
     #tty: true
