@@ -8,7 +8,7 @@ pipeline {
         choice(name: 'ATTACHMENT_SIZE', , choices: ['fiveMB.img', 'tenMB.img', 'twentyMB.img', 'fiftyMB.img'], description: 'The size of the attachment to send.')
     }
     options {
-        buildDiscarder(logRotator(numToKeepStr: '20', artifactNumToKeepStr: "5"))
+        buildDiscarder(logRotator(numToKeepStr: '20', artifactNumToKeepStr: "15"))
     }
     stages {
         stage('Load testing') {

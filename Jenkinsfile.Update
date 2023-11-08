@@ -6,6 +6,11 @@ pipeline {
         string(name: 'UPDATE20_USERS', defaultValue: '3', description: 'Concurrent Update20 users')
         string(name: 'UPDATE1000_PAUSE', defaultValue: '5', description: 'Seconds to pause between Update1000 requests')
     }
+
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '20', artifactNumToKeepStr: "15"))
+    }
+    
     stages {
         stage('Load testing') {
             steps {

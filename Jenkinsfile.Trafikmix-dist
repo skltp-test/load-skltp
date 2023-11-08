@@ -9,6 +9,11 @@ pipeline {
         string(name: 'UPDATE_RPS_MAX', defaultValue: '15', description: 'EI Update RequestsPerSecond max')
         string(name: 'ERR3_REQ', defaultValue: '5', description: 'ErrorResponse (3x) Requests')
     }
+
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '20', artifactNumToKeepStr: "15"))
+    }
+    
     stages {
         stage('Setup') {
             agent { label 'agent1' }

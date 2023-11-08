@@ -8,6 +8,10 @@ pipeline {
         string(name: 'DURATION_MINUTES', defaultValue: '10', description: 'Duration minutes (after 1 minute ramp-up)')
     }
 
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '20', artifactNumToKeepStr: "15"))
+    }
+
     stages {
         stage('Load testing') {
             steps {

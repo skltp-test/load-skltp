@@ -11,6 +11,10 @@ pipeline {
         string(name: 'ERR3_REQ', defaultValue: '5', description: 'ErrorResponse (3x) Requests')
     }
 
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '20', artifactNumToKeepStr: "15"))
+    }
+
     stages {
         stage('Load testing') {
             steps {

@@ -2,6 +2,10 @@ pipeline {
 
     agent any
 
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '20', artifactNumToKeepStr: "15"))
+    }
+
     stages {
         stage('Load testing') {
             steps {

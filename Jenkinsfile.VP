@@ -5,6 +5,11 @@ pipeline {
         string(name: 'RPS', defaultValue: '50', description: 'Direct Requests Per Second')
         string(name: 'DURATION_MINUTES', defaultValue: '10', description: 'Duration in minutes')
     }
+
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '20', artifactNumToKeepStr: "15"))
+    }
+    
     stages {
         stage('Load testing') {
             steps {
