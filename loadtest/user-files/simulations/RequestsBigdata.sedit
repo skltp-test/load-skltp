@@ -7,8 +7,8 @@ import scala.concurrent.duration._
 class RequestsBigdata extends Simulation {
 
         // Traffic will be routed toward LOAD-MOCKS based choosen personId
-	val feeder1 = csv("../user-files/data/Bigdata.csv").circular
-	val feeder2 = csv("../user-files/data/ViaAGP.csv").circular
+	val feeder1 = csv("user-files/data/Bigdata.csv").circular
+	val feeder2 = csv("user-files/data/ViaAGP.csv").circular
 	
 	val httpConf = http
 		.baseUrl("https://TARGETHOST/vp")
