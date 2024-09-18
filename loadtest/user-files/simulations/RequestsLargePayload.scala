@@ -11,7 +11,7 @@ class RequestsLargePayload extends Simulation {
     var durationMinutes = sys.env("DURATION_MINUTES").toInt
 
     // Traffic will be routed toward LOAD-MOCKS
-    val feeder2 = csv("../user-files/data/Direktadresserad.csv").circular
+    val feeder2 = csv("user-files/data/Direktadresserad.csv").circular
 
     val httpConf = http
       .baseUrl(s"https://$targetHost/vp")

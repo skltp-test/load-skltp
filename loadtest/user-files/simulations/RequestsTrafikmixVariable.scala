@@ -16,12 +16,12 @@ class RequestsTrafikmixVariable extends Simulation {
     val errorReqs = sys.env("ERR3_REQ").toInt
 
     // Traffic will be routed toward LOAD-MOCKS based choosen personId
-	val feeder1 = csv("../user-files/data/ViaAGP-delay.csv").circular
-	val feeder2 = csv("../user-files/data/Direktadresserad-delay.csv").circular
-	val feederUpdate = csv("../user-files/data/Update.csv").circular
-	val feederVP004 = csv("../user-files/data/VP004.csv").circular
-	val feederVP007 = csv("../user-files/data/VP007.csv").circular
-	val feederVP009 = csv("../user-files/data/VP009.csv").circular
+	val feeder1 = csv("user-files/data/ViaAGP-delay.csv").circular
+	val feeder2 = csv("user-files/data/Direktadresserad-delay.csv").circular
+	val feederUpdate = csv("user-files/data/Update.csv").circular
+	val feederVP004 = csv("user-files/data/VP004.csv").circular
+	val feederVP007 = csv("user-files/data/VP007.csv").circular
+	val feederVP009 = csv("user-files/data/VP009.csv").circular
 	
 	val httpConf = http
 		.baseUrl(s"https://$targetHost/vp")
