@@ -12,7 +12,7 @@ class RequestsPatientInfoApSe extends Simulation {
 
         val baseUrl = s"https://$targetHost/vp"
         val XmlPath = "user-files/data/GetPatientInfoApSe.xml"
-        val CsvPath = "../user-files/data/GetPatientInfoApSe.csv"
+        val CsvPath = "user-files/data/GetPatientInfoApSe.csv"
         val HttpRequestName = "ApSeMock"
         val ScenarioName = "ApSeMock"
 
