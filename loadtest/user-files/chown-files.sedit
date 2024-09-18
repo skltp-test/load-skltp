@@ -4,4 +4,4 @@
 # Run Load test (mute cli questions)
 #------------------------------------
 rm -rf $DIR/../results/*
-gatling.sh -s SKLTP.SIMULATION
+gatling.sh -rm local -s SKLTP.SIMULATION
