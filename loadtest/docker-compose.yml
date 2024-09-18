@@ -1,7 +1,7 @@
 version: '3'
 services:
   testsuite:
-    image: "denvazh/gatling:3.0.3"
+    build: gatling
     deploy:
       replicas: 4
       placement:
@@ -32,7 +32,7 @@ services:
       - ./results:/opt/gatling/results
     entrypoint: ["sh", "/opt/gatling/user-files/chown-files.sh"]
   recorder:
-    image: "denvazh/gatling"
+    build: gatling
     # bash är inte istallerat i containern, så måste explict köra sh
     entrypoint: ["sh", "/opt/gatling/bin/recorder.sh"]
     # För exempelkommandon:
