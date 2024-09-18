@@ -15,8 +15,8 @@ RUN apk add --update wget bash libc6-compat && \
   unzip /tmp/downloads/gatling-$GATLING_VERSION.zip && \
   mv /tmp/archive/gatling-charts-highcharts-bundle-$GATLING_VERSION/* /opt/gatling/ && \
   rm -rf /tmp/* && \ 
-  adduser -HD -u 1000 gatling && \
-  chown 1000:1000 -R /opt/gatling
+  adduser -HD -u 50535 gatling && \
+  chown 50535:50535 -R /opt/gatling
 
 # change context to gatling directory
 WORKDIR  /opt/gatling
