@@ -14,9 +14,7 @@ RUN apk add --update wget bash libc6-compat && \
   mkdir -p /tmp/archive && cd /tmp/archive && \
   unzip /tmp/downloads/gatling-$GATLING_VERSION.zip && \
   mv /tmp/archive/gatling-charts-highcharts-bundle-$GATLING_VERSION/* /opt/gatling/ && \
-  rm -rf /tmp/* && \ 
-  adduser -HD -u 50535 gatling && \
-  chown 50535:50535 -R /opt/gatling
+  rm -rf /tmp/*
 
 # change context to gatling directory
 WORKDIR  /opt/gatling
@@ -35,7 +33,5 @@ ENV TRUSTSTORE_PASSWORD=""
 ENV KEYSTORE_TYPE=pkcs12
 ENV KEYSTORE_FILE=""
 ENV KEYSTORE_PASSWORD=""
-
-USER 1000
 
 ENTRYPOINT ["gatling.sh"]
