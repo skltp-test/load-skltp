@@ -12,7 +12,7 @@ class RequestsUpdate extends Simulation {
         val update20Users = sys.env("UPDATE20_USERS").toInt
 
         // Traffic will be routed toward LOAD-MOCKS based choosen personId
-	val feeder1 = csv("../user-files/data/ViaAGP.csv").circular
+	val feeder1 = csv("user-files/data/ViaAGP.csv").circular
 	val feederUpdate = csv("user-files/data/Update.csv").circular
 	
 	val httpConf = http
